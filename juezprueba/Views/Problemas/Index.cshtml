@@ -1,0 +1,32 @@
+﻿@model List<juezprueba.Models.Problema>
+
+@{
+    ViewBag.Title = "Lista de Problemas";
+}
+
+<h2>Lista de Problemas</h2>
+
+<a class="btn btn-primary mb-3" asp-action="Create">➕ Crear nuevo problema</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var problema in Model)
+        {
+            <tr>
+                <td>@problema.Titulo</td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-action="Resolver" asp-route-id="@problema.Id">Resolver</a>
+                    <a class="btn btn-sm btn-secondary" asp-action="Details" asp-route-id="@problema.Id">Detalles</a>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@problema.Id">Editar</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@problema.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,19 @@
+﻿@model juezprueba.Models.Problema
+
+@{
+    ViewData["Title"] = "Eliminar Problema";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>¿Estás seguro de que deseas eliminar el siguiente problema?</h4>
+<div>
+    <p><strong>Título:</strong> @Model.Titulo</p>
+    <p><strong>Descripción:</strong> @Model.Descripcion</p>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

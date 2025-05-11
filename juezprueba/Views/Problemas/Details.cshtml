@@ -1,0 +1,26 @@
+﻿@model juezprueba.Models.Problema
+
+@{
+    ViewData["Title"] = "Detalles del Problema";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>@Model.Titulo</h4>
+    <p><strong>Descripción:</strong> @Model.Descripcion</p>
+
+    @if (Model.CasosDePrueba != null && Model.CasosDePrueba.Any())
+    {
+        <h5>Casos de Prueba:</h5>
+        <ul>
+            @foreach (var caso in Model.CasosDePrueba)
+            {
+                <li><strong>Input:</strong> @caso.Input<br /><strong>Output esperado:</strong> @caso.OutputEsperado</li>
+            }
+        </ul>
+    }
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Volver</a>
