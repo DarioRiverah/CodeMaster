@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Enviar Código";
+}
+
+<h2>Enviar Código a Judge0</h2>
+
+<form method="post">
+    <div>
+        <label for="languageId">Lenguaje:</label>
+        <select name="languageId" id="languageId">
+            <option value="52">C++ (GCC 9.2.0)</option>
+            <option value="62">Java (OpenJDK 13)</option>
+            <option value="71">Python (3.8.1)</option>
+            <option value="63">JavaScript (Node.js 12.14.0)</option>
+            <!-- Puedes agregar más lenguajes -->
+        </select>
+    </div>
+
+    <div>
+        <label for="input">Input (opcional):</label>
+        <textarea name="input" id="input" rows="4" cols="50"></textarea>
+    </div>
+
+    <div>
+        <label for="sourceCode">Código fuente:</label>
+        <textarea name="sourceCode" id="sourceCode" rows="10" cols="80"></textarea>
+    </div>
+
+    <button type="submit">Ejecutar Código</button>
+</form>
+
+@if (ViewBag.Resultado != null)
+{
+    <h3>Resultado:</h3>
+    <pre>@ViewBag.Resultado</pre>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div style="color: red;">
+        <h3>Error:</h3>
+        <pre>@ViewBag.Error</pre>
+    </div>
+}
+
+@if (string.IsNullOrWhiteSpace((string)ViewBag.Resultado))
+{
+    <p>No hubo salida del programa o no se ejecutó correctamente.</p>
+}
