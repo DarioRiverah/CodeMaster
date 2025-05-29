@@ -1,0 +1,233 @@
+﻿@model juezprueba.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Registro";
+    Layout = "_Layout";
+}
+
+<div class="auth-wrapper">
+    <div class="auth-container">
+        <!-- Sección de imagen con fondo -->
+        <div class="auth-side-panel">
+            <div class="auth-side-content">
+                <h2 class="display-5 fw-bold mb-4">¡Únete a nuestra comunidad!</h2>
+                <p class="lead mb-5">Comienza a resolver problemas y mejora tus habilidades.</p>
+            </div>
+        </div>
+
+        <!-- Sección del formulario -->
+        <div class="auth-main-panel">
+            <div class="auth-form-container">
+                <div class="text-center mb-5">
+                    <h1 class="h3 fw-bold">Crear Cuenta</h1>
+                    <p class="text-muted">Completa el formulario para registrarte</p>
+                </div>
+
+                <form asp-action="Register" method="post" class="needs-validation" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Nombre" class="form-label">Nombre</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input asp-for="Nombre" class="form-control form-control-lg" placeholder="Tu nombre" required>
+                            </div>
+                            <span asp-validation-for="Nombre" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Apellido" class="form-label">Apellido</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input asp-for="Apellido" class="form-control form-control-lg" placeholder="Tu apellido" required>
+                            </div>
+                            <span asp-validation-for="Apellido" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Correo Electrónico</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <input asp-for="Email" type="email" class="form-control form-control-lg" placeholder="tu@correo.com" required>
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label">Contraseña</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <input asp-for="Password" type="password" class="form-control form-control-lg" placeholder="••••••••" required>
+                            <button class="btn btn-outline-secondary toggle-password" type="button">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="ConfirmPassword" class="form-label">Confirmar Contraseña</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <input asp-for="ConfirmPassword" type="password" class="form-control form-control-lg" placeholder="••••••••" required>
+                            <button class="btn btn-outline-secondary toggle-password" type="button">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-lg w-100 mb-3">
+                        <i class="fas fa-user-plus me-2"></i>Registrarme
+                    </button>
+
+                    <div class="text-center mt-4">
+                        <p class="mb-0">¿Ya tienes una cuenta? <a asp-action="Login" class="text-decoration-none">Inicia sesión aquí</a></p>
+                    </div>
+                </form>
+
+                <!-- Botón para registro con Google -->
+                <div class="text-center my-3">
+                    <p>O regístrate con:</p>
+                    <form asp-controller="Auth" asp-action="ExternalLogin" method="post" class="d-inline">
+                        <input type="hidden" name="provider" value="Google" />
+                        <button type="submit" class="btn btn-outline-danger btn-lg">
+                            <i class="fab fa-google me-2"></i> Google
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .auth-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 120px);
+            padding: 2rem 1rem;
+        }
+
+        .auth-container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        .auth-side-panel {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+            .auth-side-panel::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(111, 66, 193, 0.7); /* Morado con opacidad */
+            }
+
+        .auth-side-content {
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+
+        .auth-main-panel {
+            flex: 1;
+            padding: 3rem;
+            background-color: var(--bs-body-bg);
+            border-left: 1px solid var(--bs-border-color);
+        }
+
+        .auth-form-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .toggle-password {
+            cursor: pointer;
+        }
+
+        /* Estilo adicional para el botón verde */
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+            .btn-success:hover {
+                background-color: #218838;
+                border-color: #1e7e34;
+            }
+
+        @@media (max-width: 768px) {
+            .auth-container {
+                flex-direction: column;
+            }
+
+            .auth-side-panel {
+                display: none;
+            }
+
+            .auth-main-panel {
+                border-left: none;
+                border-top: 1px solid var(--bs-border-color);
+            }
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        // Toggle password visibility
+        document.querySelectorAll('.toggle-password').forEach(button => {
+            button.addEventListener('click', function() {
+                const input = this.closest('.input-group').querySelector('input');
+                const icon = this.querySelector('i');
+
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.replace('fa-eye', 'fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    icon.classList.replace('fa-eye-slash', 'fa-eye');
+                }
+            });
+        });
+
+        // Form validation
+        (function () {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+}

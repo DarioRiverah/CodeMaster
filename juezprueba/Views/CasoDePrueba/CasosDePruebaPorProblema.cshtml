@@ -1,0 +1,708 @@
+﻿@model juezprueba.Models.Problema
+@{
+    ViewData["Title"] = "Casos de Prueba";
+}
+
+<style>
+    :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        --danger-gradient: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+        --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        --glass-bg: rgba(255, 255, 255, 0.25);
+        --glass-border: rgba(255, 255, 255, 0.18);
+        --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        --text-light: #333;
+        --bg-light: #f8f9fa;
+        --card-light: rgba(255, 255, 255, 0.9);
+    }
+
+    [data-bs-theme="dark"] {
+        --glass-bg: rgba(0, 0, 0, 0.3);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        --text-light: #e9ecef;
+        --bg-light: #121212;
+        --card-light: rgba(33, 37, 41, 0.9);
+    }
+
+    body {
+        background: var(--bg-light);
+        transition: var(--transition);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    @@keyframes fadeInUp {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1050;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--primary-gradient);
+        color: white;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--bs-border-color);
+    }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(180deg);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+    .main-card {
+        border: none;
+        border-radius: var(--border-radius);
+        box-shadow: var(--card-shadow);
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        transition: var(--transition);
+        background: var(--card-light);
+    }
+
+        .main-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+    .gradient-header {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 2rem;
+        margin: -1px -1px 0 -1px;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .gradient-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+    @@keyframes shimmer {
+        0%, 100%
+
+    {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    }
+
+    .header-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .header-title {
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .form-floating-modern {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .form-floating-modern .form-control {
+            background: var(--card-light);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 12px 16px;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            color: var(--text-light);
+        }
+
+            .form-floating-modern .form-control:focus {
+                border-color: var(--bs-primary);
+                box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.25);
+                transform: translateY(-1px);
+            }
+
+        .form-floating-modern label {
+            color: var(--text-light);
+            opacity: 0.7;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+    .btn-modern {
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 0.85rem;
+        padding: 8px 16px;
+        border: none;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+
+        .btn-modern:hover::before {
+            width: 200px;
+            height: 200px;
+        }
+
+        .btn-modern:hover {
+            transform: translateY(-2px);
+        }
+
+    .btn-success-modern {
+        background: var(--success-gradient);
+        color: white;
+    }
+
+        .btn-success-modern:hover {
+            box-shadow: 0 6px 20px rgba(17, 153, 142, 0.4);
+            color: white;
+        }
+
+    .btn-warning-modern {
+        background: var(--edit-gradient);
+        color: white;
+    }
+
+        .btn-warning-modern:hover {
+            box-shadow: 0 6px 20px rgba(253, 203, 110, 0.4);
+            color: white;
+        }
+
+    .btn-danger-modern {
+        background: var(--danger-gradient);
+        color: white;
+    }
+
+        .btn-danger-modern:hover {
+            box-shadow: 0 6px 20px rgba(252, 70, 107, 0.4);
+            color: white;
+        }
+
+    .btn-primary-modern {
+        background: var(--primary-gradient);
+        color: white;
+    }
+
+        .btn-primary-modern:hover {
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+    .btn-create {
+        background: var(--create-gradient);
+        color: white;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-weight: 600;
+        transition: var(--transition);
+    }
+
+        .btn-create:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.3);
+            color: white;
+        }
+
+    .table-modern {
+        background: var(--card-light);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        backdrop-filter: blur(16px);
+    }
+
+        .table-modern thead th {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .table-modern tbody tr {
+            transition: var(--transition);
+            border: none;
+        }
+
+            .table-modern tbody tr:hover {
+                background: var(--bs-primary-bg-subtle) !important;
+                transform: translateX(5px);
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+
+        .table-modern tbody td {
+            border: none;
+            padding: 1rem;
+            vertical-align: middle;
+            color: var(--text-light);
+        }
+
+    .problem-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--bs-emphasis-color);
+        transition: var(--transition);
+    }
+
+    .table-modern tbody tr:hover .problem-title {
+        color: var(--bs-primary);
+    }
+
+    .pulse-animation {
+        animation: modernPulse 2s infinite;
+    }
+
+    @@keyframes modernPulse {
+        0%
+
+    {
+        box-shadow: 0 0 0 0 rgba(17, 153, 142, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(17, 153, 142, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(17, 153, 142, 0);
+    }
+
+    }
+
+    .modal-modern .modal-content {
+        background: var(--card-light);
+        backdrop-filter: blur(16px);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--bs-border-color);
+        box-shadow: var(--card-shadow-hover);
+    }
+
+    .modal-modern .modal-header {
+        background: var(--primary-gradient);
+        color: white;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        border: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .modal-modern .modal-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+    .page-title {
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 800;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    .icon-bounce {
+        transition: var(--transition);
+    }
+
+        .icon-bounce:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+    .floating-elements {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .floating-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @@keyframes float {
+        0%, 100%
+
+    {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+
+    }
+
+    .success-flash {
+        animation: successFlash 0.6s ease-in-out;
+    }
+
+    @@keyframes successFlash {
+        0%
+
+    {
+        background-color: transparent;
+    }
+
+    50% {
+        background-color: rgba(17, 153, 142, 0.2);
+    }
+
+    100% {
+        background-color: transparent;
+    }
+
+    }
+
+    /* Responsive design */
+    @@media (max-width: 768px) {
+        .gradient-header
+
+    {
+        padding: 1.5rem;
+    }
+
+    .header-title {
+        font-size: 1.25rem;
+    }
+
+    .btn-modern {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    }
+</style>
+
+<!-- Elementos flotantes decorativos -->
+<div class="floating-elements">
+    <div class="floating-circle" style="width: 60px; height: 60px; top: 10%; left: 10%; animation-delay: 0s;"></div>
+    <div class="floating-circle" style="width: 80px; height: 80px; top: 20%; right: 10%; animation-delay: 2s;"></div>
+    <div class="floating-circle" style="width: 40px; height: 40px; bottom: 20%; left: 20%; animation-delay: 4s;"></div>
+    <div class="floating-circle" style="width: 70px; height: 70px; bottom: 10%; right: 20%; animation-delay: 1s;"></div>
+</div>
+
+<div class="container mt-4">
+    <h1 class="page-title">Casos de Prueba</h1>
+    <p class="text-center mb-4 fs-5" style="color: var(--text-light); opacity: 0.8;">
+        Problema: <strong>@Model.Titulo</strong>
+    </p>
+
+    <!-- Formulario para agregar -->
+    <div class="main-card mb-5">
+        <div class="gradient-header">
+            <div class="header-content">
+                <h4 class="header-title mb-0">
+                    <i class="fas fa-plus-circle icon-bounce me-2"></i>
+                    Agregar nuevo caso de prueba
+                </h4>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            <form asp-action="AgregarCasoDesdeProblema" method="post" id="add-form">
+                <input type="hidden" name="ProblemaId" value="@Model.Id" />
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="form-floating-modern">
+                            <input type="text" class="form-control" name="Input" id="inputInput" placeholder="Input" />
+                            <label for="inputInput">
+                                <i class="fas fa-keyboard me-2"></i>Input
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating-modern">
+                            <input type="text" class="form-control" name="OutputEsperado" id="outputEsperado" placeholder="Output esperado" required />
+                            <label for="outputEsperado">
+                                <i class="fas fa-check-circle me-2"></i>Output esperado
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <button type="submit" class="btn btn-modern btn-success-modern pulse-animation">
+                        <i class="fas fa-save me-2"></i>
+                        Guardar caso
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tabla de casos -->
+    <div class="main-card">
+        <div class="gradient-header" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);">
+            <div class="header-content">
+                <h4 class="header-title mb-0">
+                    <i class="fas fa-list icon-bounce me-2"></i>
+                    Lista de casos de prueba
+                </h4>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-modern">
+                <table class="table table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-hashtag me-2"></i>ID</th>
+                            <th><i class="fas fa-keyboard me-2"></i>Input</th>
+                            <th><i class="fas fa-check-circle me-2"></i>Output Esperado</th>
+                            <th class="text-end"><i class="fas fa-cogs me-2"></i>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int contador = 1;
+                        }
+                        @foreach (var caso in Model.CasosDePrueba)
+                        {
+                            <tr id="fila-@caso.Id" class="table-row">
+                                <td><strong class="problem-title">Caso @contador</strong></td>
+                                <td><code style="background: var(--bs-secondary-bg); padding: 4px 8px; border-radius: 4px;">@caso.Input</code></td>
+                                <td><code style="background: var(--bs-secondary-bg); padding: 4px 8px; border-radius: 4px;">@caso.OutputEsperado</code></td>
+                                <td class="text-end">
+                                    <!-- Editar -->
+                                    <button class="btn btn-modern btn-warning-modern btn-sm me-2 editar-btn"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editarModal"
+                                            data-id="@caso.Id"
+                                            data-input="@caso.Input"
+                                            data-output="@caso.OutputEsperado">
+                                        <i class="fas fa-edit me-1"></i> Editar
+                                    </button>
+
+                                    <!-- Eliminar -->
+                                    <button class="btn btn-modern btn-danger-modern btn-sm eliminar-btn" data-id="@caso.Id">
+                                        <i class="fas fa-trash-alt me-1"></i> Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                            contador++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de edición -->
+<div class="modal fade modal-modern" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form asp-action="EditarCasoDesdeProblema" method="post" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarModalLabel">
+                    <i class="fas fa-edit me-2"></i>
+                    Editar Caso de Prueba
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <input type="hidden" name="Id" id="edit-id" />
+                <input type="hidden" name="ProblemaId" value="@Model.Id" />
+                <div class="form-floating-modern mb-4">
+                    <input type="text" class="form-control" name="Input" id="edit-input" placeholder="Input" required />
+                    <label for="edit-input">
+                        <i class="fas fa-keyboard me-2"></i>Input
+                    </label>
+                </div>
+                <div class="form-floating-modern">
+                    <input type="text" class="form-control" name="OutputEsperado" id="edit-output" placeholder="Output esperado" required />
+                    <label for="edit-output">
+                        <i class="fas fa-check-circle me-2"></i>Output esperado
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>Cancelar
+                </button>
+                <button type="submit" class="btn btn-modern btn-primary-modern">
+                    <i class="fas fa-save me-2"></i>
+                    Guardar cambios
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Tema
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            const currentTheme = html.getAttribute('data-bs-theme');
+
+            if (currentTheme === 'dark') {
+                html.setAttribute('data-bs-theme', 'light');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-bs-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Cargar tema guardado
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+
+            html.setAttribute('data-bs-theme', savedTheme);
+            icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        });
+
+        // Eliminar con animación
+        document.querySelectorAll('.eliminar-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const id = this.dataset.id;
+                const fila = document.getElementById('fila-' + id);
+
+                if (confirm("¿Deseas eliminar este caso?")) {
+                    // Animación de salida
+                    fila.style.transform = 'translateX(-100%)';
+                    fila.style.opacity = '0';
+
+                    fetch('/CasoDePrueba/EliminarDesdeVista', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: 'id=' + id
+                    }).then(res => {
+                        if (res.ok) {
+                            setTimeout(() => {
+                                fila.remove();
+                            }, 300);
+                        } else {
+                            alert("Error al eliminar");
+                            fila.style.transform = '';
+                            fila.style.opacity = '';
+                        }
+                    });
+                }
+            });
+        });
+
+        // Rellenar modal al hacer clic en Editar
+        const editarModal = document.getElementById('editarModal');
+        editarModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const id = button.getAttribute('data-id');
+            const input = button.getAttribute('data-input');
+            const output = button.getAttribute('data-output');
+
+            document.getElementById('edit-id').value = id;
+            document.getElementById('edit-input').value = input;
+            document.getElementById('edit-output').value = output;
+        });
+
+        // Animación de éxito al agregar
+        document.getElementById('add-form').addEventListener('submit', function(e) {
+            const button = this.querySelector('button[type="submit"]');
+            button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Guardando...';
+            button.disabled = true;
+        });
+
+        // Efecto de escritura en inputs
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+
+        // Notificación de éxito
+        function showSuccessNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'alert alert-success position-fixed top-0 end-0 m-3';
+            notification.style.zIndex = '1060';
+            notification.innerHTML = `<i class="fas fa-check-circle me-2"></i>${message}`;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Añadir clase de éxito temporal
+        function addSuccessFlash(element) {
+            element.classList.add('success-flash');
+            setTimeout(() => {
+                element.classList.remove('success-flash');
+            }, 600);
+        }
+    </script>
+}

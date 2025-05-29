@@ -42,8 +42,13 @@ C:\Users\Dario Rivera\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwro
 C:\Users\Dario Rivera\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.js.map
 C:\Users\Dario Rivera\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js
 C:\Users\Dario Rivera\.nuget\packages\bootstrap\5.3.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js.map
+wwwroot\css\animatedBackground.css
+wwwroot\css\frecuentes.css
+wwwroot\css\indexHome.css
+wwwroot\css\nosotros.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\js\particleBackground.js
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map

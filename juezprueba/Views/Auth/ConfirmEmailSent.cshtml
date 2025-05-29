@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Correo de Confirmación Enviado";
+}
+
+<div class="container mt-5">
+    <div class="alert alert-info text-center">
+        <h4 class="alert-heading">¡Revisa tu correo electrónico!</h4>
+        <p>
+            Hemos enviado un enlace de confirmación a tu dirección de correo electrónico.
+            Por favor, verifica tu bandeja de entrada y sigue las instrucciones para activar tu cuenta.
+        </p>
+        <hr>
+        <p class="mb-0">
+            ¿No recibiste el correo de confirmación?
+            <a asp-action="ResendEmailConfirmation" asp-controller="Auth">Reenviar correo aquí</a>.
+        </p>
+    </div>
+</div>

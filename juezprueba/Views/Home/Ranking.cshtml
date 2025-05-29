@@ -1,0 +1,790 @@
+﻿@model IEnumerable<juezprueba.ViewModels.RankingViewModel>
+
+@{
+    ViewData["Title"] = "Ranking Mensual";
+    var medallas = new[] { "🥇", "🥈", "🥉" };
+    int i = 0;
+    var defaultImage = "https://i.ibb.co/7QZKSQc/default-profile.png";
+}
+
+@section ParticleBackground {
+    <script src="~/js/particleBackground.js"></script>
+}
+
+<div class="container-fluid py-4">
+    <!-- Header animado -->
+    <div class="ranking-header text-center mb-4">
+        <h1 class="ranking-title">
+            <span class="trophy-icon">🏆</span>
+            @ViewData["Title"]
+        </h1>
+        <div class="ranking-subtitle">
+            <span class="pulse-dot"></span>
+            Clasificación actualizada en tiempo real
+            <span class="pulse-dot"></span>
+        </div>
+    </div>
+
+    <div class="ranking-card">
+        <div class="card-glow"></div>
+        <div class="card-content">
+            @if (Model.Any())
+            {
+                <div class="ranking-list">
+                    @foreach (var item in Model)
+                    {
+                        <div class="ranking-item @(i < 3 ? "top-three" : "") rank-@(i + 1)"
+                             style="animation-delay: @(i * 0.1)s">
+
+                            <!-- Posición -->
+                            <div class="position-section">
+                                @if (i < 3)
+                                {
+                                    <div class="medal-container">
+                                        <span class="medal-icon">@medallas[i]</span>
+                                        <div class="position-glow rank-@(i + 1)"></div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="position-number">#@(i + 1)</div>
+                                }
+                            </div>
+
+                            <!-- Avatar y nombre -->
+                            <div class="user-section">
+                                <div class="avatar-container">
+                                    <img src="@item.ImagenPerfilUrl"
+                                         class="user-avatar"
+                                         alt="@item.Usuario"
+                                         onerror="this.onerror=null;this.src='@defaultImage'">
+                                    @if (i < 3)
+                                    {
+                                        <div class="avatar-glow rank-@(i + 1)"></div>
+                                    }
+                                </div>
+                                <div class="user-info">
+                                    <div class="user-name">@item.Usuario</div>
+                                    @if (i == 0)
+                                    {
+                                        <div class="crown-badge">👑 Campeón</div>
+                                    }
+                                    else if (i == 1)
+                                    {
+                                        <div class="podium-badge">Top 2</div>
+                                    }
+                                    else if (i == 2)
+                                    {
+                                        <div class="podium-badge">Top 3</div>
+                                    }
+                                </div>
+                            </div>
+
+                            <!-- Puntos y progreso -->
+                            <div class="points-section">
+                                <div class="points-display">
+                                    <span class="points-number">@item.PuntosTotales</span>
+                                    <span class="points-text">pts</span>
+                                </div>
+                                @{
+                                    var maxPoints = Model.Max(x => x.PuntosTotales);
+                                    var percentage = maxPoints > 0 ? (double)item.PuntosTotales / maxPoints * 100 : 0;
+                                }
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar rank-@(i + 1)"
+                                         style="width: @percentage%; animation-delay: @((i * 0.1) + 0.5)s"></div>
+                                </div>
+                            </div>
+
+                            <!-- Efectos visuales -->
+                            @if (i < 3)
+                            {
+                                <div class="ranking-particles">
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                </div>
+                            }
+                        </div>
+                        i++;
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="empty-state">
+                    <div class="empty-icon">🏆</div>
+                    <h3>¡El ranking está esperando por ti!</h3>
+                    <p>Sé el primero en resolver problemas este mes y conquista el primer lugar.</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+
+    /* Variables CSS */
+    :root {
+        --gold: linear-gradient(135deg, #ffd700, #ffed4e);
+        --silver: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+        --bronze: linear-gradient(135deg, #cd7f32, #e69c56);
+        --primary: linear-gradient(135deg, #667eea, #764ba2);
+        --secondary: linear-gradient(135deg, #f093fb, #f5576c);
+        --success: linear-gradient(135deg, #4facfe, #00f2fe);
+        --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    /* Header */
+    .ranking-header {
+        margin-bottom: 2rem;
+    }
+
+    .ranking-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: var(--primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+        animation: titleFloat 3s ease-in-out infinite;
+    }
+
+    .trophy-icon {
+        font-size: 2rem;
+        animation: trophyBounce 2s ease-in-out infinite;
+        display: inline-block;
+        margin-right: 1rem;
+    }
+
+    .ranking-subtitle {
+        font-size: 1rem;
+        color: #666;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .pulse-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--secondary);
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Card principal */
+    .ranking-card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .card-glow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--primary);
+        animation: glowMove 4s linear infinite;
+    }
+
+    .card-content {
+        padding: 1.5rem;
+    }
+
+    /* Lista de ranking */
+    .ranking-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .ranking-item {
+        display: flex;
+        align-items: center;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        animation: slideInUp 0.6s ease-out forwards;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+        .ranking-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .ranking-item.top-three {
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box, var(--gold) border-box;
+        }
+
+        .ranking-item.rank-1 {
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)) padding-box, var(--gold) border-box;
+        }
+
+        .ranking-item.rank-2 {
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)) padding-box, var(--silver) border-box;
+        }
+
+        .ranking-item.rank-3 {
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)) padding-box, var(--bronze) border-box;
+        }
+
+    /* Sección de posición */
+    .position-section {
+        min-width: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1.5rem;
+    }
+
+    .medal-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .medal-icon {
+        font-size: 2.5rem;
+        z-index: 2;
+        position: relative;
+        animation: medalFloat 3s ease-in-out infinite;
+    }
+
+    .position-glow {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        animation: glowPulse 2s ease-in-out infinite;
+        z-index: 1;
+    }
+
+        .position-glow.rank-1 {
+            background: var(--gold);
+            opacity: 0.3;
+        }
+
+        .position-glow.rank-2 {
+            background: var(--silver);
+            opacity: 0.3;
+        }
+
+        .position-glow.rank-3 {
+            background: var(--bronze);
+            opacity: 0.3;
+        }
+
+    .position-number {
+        font-size: 1.8rem;
+        font-weight: 700;
+        background: var(--primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Sección de usuario */
+    .user-section {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        gap: 1rem;
+    }
+
+    .avatar-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 2;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+        .user-avatar:hover {
+            transform: scale(1.1);
+        }
+
+    .avatar-glow {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        animation: avatarGlow 2s ease-in-out infinite;
+        z-index: 1;
+    }
+
+        .avatar-glow.rank-1 {
+            background: var(--gold);
+        }
+
+        .avatar-glow.rank-2 {
+            background: var(--silver);
+        }
+
+        .avatar-glow.rank-3 {
+            background: var(--bronze);
+        }
+
+    .user-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .user-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+    }
+
+    .crown-badge {
+        background: var(--gold);
+        color: white;
+        padding: 0.2rem 0.8rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: inline-block;
+        width: fit-content;
+        animation: crownShine 2s ease-in-out infinite;
+    }
+
+    .podium-badge {
+        background: var(--secondary);
+        color: white;
+        padding: 0.2rem 0.8rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: inline-block;
+        width: fit-content;
+    }
+
+    /* Sección de puntos */
+    .points-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.5rem;
+        min-width: 120px;
+    }
+
+    .points-display {
+        display: flex;
+        align-items: baseline;
+        gap: 0.25rem;
+    }
+
+    .points-number {
+        font-size: 1.8rem;
+        font-weight: 700;
+        background: var(--success);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .points-text {
+        font-size: 1rem;
+        color: #666;
+        font-weight: 500;
+    }
+
+    .progress-bar-container {
+        width: 100px;
+        height: 6px;
+        background: rgba(0,0,0,0.1);
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        height: 100%;
+        border-radius: 3px;
+        animation: progressFill 1.5s ease-out forwards;
+        width: 0 !important;
+        transition: all 0.3s ease;
+    }
+
+        .progress-bar.rank-1 {
+            background: var(--gold);
+        }
+
+        .progress-bar.rank-2 {
+            background: var(--silver);
+        }
+
+        .progress-bar.rank-3 {
+            background: var(--bronze);
+        }
+
+        .progress-bar:not(.rank-1):not(.rank-2):not(.rank-3) {
+            background: var(--success);
+        }
+
+    /* Partículas decorativas */
+    .ranking-particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #ffd700;
+        border-radius: 50%;
+        animation: particleFloat 4s ease-in-out infinite;
+    }
+
+        .particle:nth-child(1) {
+            top: 15%;
+            left: 8%;
+            animation-delay: 0s;
+            background: #ffd700;
+        }
+
+        .particle:nth-child(2) {
+            top: 65%;
+            left: 85%;
+            animation-delay: 1s;
+            background: #ff6b6b;
+        }
+
+        .particle:nth-child(3) {
+            top: 35%;
+            left: 65%;
+            animation-delay: 2s;
+            background: #4ecdc4;
+        }
+
+        .particle:nth-child(4) {
+            top: 80%;
+            left: 15%;
+            animation-delay: 0.5s;
+            background: #45b7d1;
+        }
+
+        .particle:nth-child(5) {
+            top: 25%;
+            left: 90%;
+            animation-delay: 1.5s;
+            background: #96ceb4;
+        }
+
+        .particle:nth-child(6) {
+            top: 50%;
+            left: 5%;
+            animation-delay: 2.5s;
+            background: #feca57;
+        }
+
+        .particle:nth-child(7) {
+            top: 10%;
+            left: 45%;
+            animation-delay: 3s;
+            background: #ff9ff3;
+        }
+
+        .particle:nth-child(8) {
+            top: 70%;
+            left: 50%;
+            animation-delay: 3.5s;
+            background: #54a0ff;
+        }
+
+    /* Empty state */
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: #666;
+    }
+
+    .empty-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        animation: emptyBounce 2s ease-in-out infinite;
+    }
+
+    /* Animations */
+    @@keyframes titleFloat {
+        0%, 100%
+
+    {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    }
+
+    @@keyframes trophyBounce {
+        0%, 100%
+
+    {
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    }
+
+    @@keyframes pulse {
+        0%, 100%
+
+    {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+
+    }
+
+    @@keyframes glowMove {
+        0%
+
+    {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100vw);
+    }
+
+    }
+
+    @@keyframes slideInUp {
+        to
+
+    {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    @@keyframes medalFloat {
+        0%, 100%
+
+    {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(10deg);
+    }
+
+    }
+
+    @@keyframes glowPulse {
+        0%, 100%
+
+    {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+
+    }
+
+    @@keyframes avatarGlow {
+        0%, 100%
+
+    {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+
+    }
+
+    @@keyframes crownShine {
+        0%, 100%
+
+    {
+        box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+
+    }
+
+    @@keyframes progressFill {
+        from
+
+    {
+        width: 0 !important;
+    }
+
+    to {
+        width: var(--final-width) !important;
+    }
+
+    }
+
+    @@keyframes particleFloat {
+        0%, 100%
+
+    {
+        transform: translateY(0px) scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.2);
+        opacity: 1;
+    }
+
+    }
+
+    @@keyframes emptyBounce {
+        0%, 100%
+
+    {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    }
+
+    /* Dark mode */
+    [data-bs-theme="dark"] .ranking-card {
+        background: rgba(30, 30, 40, 0.95);
+    }
+
+    [data-bs-theme="dark"] .ranking-item {
+        background: rgba(40, 40, 50, 0.8);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+        [data-bs-theme="dark"] .ranking-item:hover {
+            background: rgba(50, 50, 60, 0.9);
+        }
+
+    [data-bs-theme="dark"] .user-name {
+        color: #e0e0e0;
+    }
+
+    [data-bs-theme="dark"] .ranking-subtitle,
+    [data-bs-theme="dark"] .points-text {
+        color: #b0b0b0;
+    }
+
+    [data-bs-theme="dark"] .progress-bar-container {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .ranking-title
+
+    {
+        font-size: 2rem;
+    }
+
+    .ranking-item {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .position-section,
+    .user-section,
+    .points-section {
+        margin: 0;
+        min-width: auto;
+    }
+
+    .user-section {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .points-section {
+        align-items: center;
+    }
+
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .avatar-glow {
+        width: 60px;
+        height: 60px;
+    }
+
+    .medal-icon {
+        font-size: 2rem;
+    }
+
+    .position-glow {
+        width: 50px;
+        height: 50px;
+    }
+
+    }
+</style>

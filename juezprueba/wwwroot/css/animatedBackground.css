@@ -1,0 +1,57 @@
+/* animatedBackground.css */
+body {
+    /* Gradiente animado para tema claro */
+    background: linear-gradient(-45deg, #1e3c72, #2a5298, #7db9e8, #1e3c72);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    transition: all 1.2s ease;
+    min-height: 100vh;
+    margin: 0;
+}
+
+[data-bs-theme="dark"] body {
+    /* Gradiente animado para tema oscuro */
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #0f2027);
+    background-size: 400% 400%;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Asegurar que el contenido esté por encima del fondo */
+.container {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(var(--bs-body-bg-rgb), 0.85);
+    border-radius: var(--bs-border-radius-lg);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Transición suave para el cambio de tema */
+.theme-changing {
+    animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.8;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

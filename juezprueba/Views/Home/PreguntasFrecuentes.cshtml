@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Preguntas Frecuentes";
+    ViewBag.CurrentTheme = ViewBag.CurrentTheme ?? "dark";
+}
+
+@section Styles {
+    <link href="~/css/frecuentes.css" rel="stylesheet" />
+}
+
+<div class="faq-container" data-bs-theme="@ViewBag.CurrentTheme">
+    <!-- Formas flotantes decorativas -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="faq-header">
+            <h1 class="faq-title">
+                <i class="bi bi-question-circle-fill me-3"></i>
+                Preguntas Frecuentes
+            </h1>
+            <p class="faq-subtitle">
+                Encuentra respuestas a las preguntas más comunes sobre nuestra plataforma de desarrollo
+            </p>
+        </div>
+
+        <!-- Acordeón de preguntas -->
+        <div class="faq-accordion">
+            <!-- Pregunta 1 -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <button class="faq-question">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-person-plus-fill faq-icon"></i>
+                        <span>¿Cómo puedo crear una cuenta en la plataforma?</span>
+                    </div>
+                    <div class="faq-toggle">
+                        <i class="bi bi-plus"></i>
+                    </div>
+                </button>
+                <div class="faq-answer">
+                    Actualmente no requerimos creación de cuentas para usar el compilador básico. Para acceder a características avanzadas, haz clic en "Registrarse" en la esquina superior derecha y completa el formulario con tus datos básicos.
+                </div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <button class="faq-question">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-code-slash faq-icon"></i>
+                        <span>¿Qué lenguajes de programación soporta el compilador?</span>
+                    </div>
+                    <div class="faq-toggle">
+                        <i class="bi bi-plus"></i>
+                    </div>
+                </button>
+                <div class="faq-answer">
+                    Nuestro compilador soporta una amplia gama de lenguajes: C, C++, Java, Python y JavaScript. Estamos trabajando constantemente para añadir más lenguajes como Go, Rust y TypeScript en futuras actualizaciones.
+                </div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <button class="faq-question">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-check-circle-fill faq-icon"></i>
+                        <span>¿Cómo se evalúan mis soluciones?</span>
+                    </div>
+                    <div class="faq-toggle">
+                        <i class="bi bi-plus"></i>
+                    </div>
+                </button>
+                <div class="faq-answer">
+                    Cada solución es evaluada contra múltiples casos de prueba automatizados. Debes pasar todos los casos para que tu solución sea considerada correcta. Los resultados muestran en tiempo real qué casos pasaron, cuáles no, y el tiempo de ejecución.
+                </div>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <button class="faq-question">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-briefcase-fill faq-icon"></i>
+                        <span>¿Puedo usar esta plataforma para preparar entrevistas técnicas?</span>
+                    </div>
+                    <div class="faq-toggle">
+                        <i class="bi bi-plus"></i>
+                    </div>
+                </button>
+                <div class="faq-answer">
+                    ¡Absolutamente! Nuestra plataforma es ideal para preparar entrevistas técnicas. Tenemos problemas categorizados por dificultad y tipo (algoritmos, estructuras de datos, programación dinámica), similares a los que encontrarías en entrevistas de empresas como Google, Microsoft y Meta.
+                </div>
+            </div>
+
+            <!-- Pregunta 5 -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <button class="faq-question">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-bug-fill faq-icon"></i>
+                        <span>¿Cómo reporto un error o sugiero una mejora?</span>
+                    </div>
+                    <div class="faq-toggle">
+                        <i class="bi bi-plus"></i>
+                    </div>
+                </button>
+                <div class="faq-answer">
+                    Puedes reportar errores o enviar sugerencias a través del formulario de contacto, por email directo, o abriendo un issue en nuestro repositorio de GitHub. Valoramos mucho el feedback de nuestra comunidad y respondemos rápidamente.
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta de contacto -->
+        <div class="contact-card">
+            <h3 class="contact-title">
+                <i class="bi bi-envelope-heart-fill me-2"></i>
+                ¿No encontraste tu respuesta?
+            </h3>
+            <p class="contact-text">
+                Nuestro equipo de soporte está aquí para ayudarte. Contáctanos directamente y te responderemos en menos de 24 horas.
+            </p>
+            <a href="/Contacto" class="contact-btn">
+                <i class="bi bi-send-fill me-2"></i>
+                Ir a Contacto
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleFAQ(element) {
+        // Cerrar otros FAQs abiertos
+        const allItems = document.querySelectorAll('.faq-item');
+        allItems.forEach(item => {
+            if (item !== element && item.classList.contains('active')) {
+                item.classList.remove('active');
+            }
+        });
+
+        // Toggle el FAQ actual
+        element.classList.toggle('active');
+    }
+
+    // Inicializar tema
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.querySelector('[data-bs-theme]');
+        const currentTheme = container.getAttribute('data-bs-theme');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+
+        if (currentTheme === 'light') {
+            themeIcon.className = 'bi bi-moon-fill';
+            themeText.textContent = 'Oscuro';
+        } else {
+            themeIcon.className = 'bi bi-sun-fill';
+            themeText.textContent = 'Claro';
+        }
+    });
+
+    // Efecto parallax suave en las formas flotantes
+    document.addEventListener('mousemove', function(e) {
+        const shapes = document.querySelectorAll('.shape');
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+
+        shapes.forEach((shape, index) => {
+            const translateX = (x - 0.5) * 20 * (index + 1);
+            const translateY = (y - 0.5) * 20 * (index + 1);
+            shape.style.transform = `translate(${translateX}px, ${translateY}px)`;
+        });
+    });
+</script>

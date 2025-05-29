@@ -3,20 +3,244 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - integradorGD</title>
+    <title>@ViewData["Title"] - CodeMaster</title>
     @RenderSection("Styles", required: false)
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/integradorGD.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Añade Bootstrap Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        /* Transición para cambio de tema */
+        body.theme-changing {
+            transition: background-color 1s ease, color 0.5s ease;
+        }
+
+        /* Transición para otros elementos */
+        .navbar, .footer, .container, .dropdown-menu {
+            transition: background-color 1s ease, color 0.5s ease;
+        }
+
+        /* Versión compacta del botón de cambio de tema */
+        .theme-switch-compact {
+            --toggle-size: 12px; /* Reducido de 20px a 12px */
+            --container-width: 3.5em; /* Reducido de 5.625em */
+            --container-height: 1.5em; /* Reducido de 2.5em */
+            --container-radius: 6.25em;
+            --container-light-bg: #3D7EAE;
+            --container-night-bg: #1D1F2C;
+            --circle-container-diameter: 2em; /* Reducido de 3.375em */
+            --sun-moon-diameter: 1.25em; /* Reducido de 2.125em */
+            --sun-bg: #ECCA2F;
+            --moon-bg: #C4C9D1;
+            --spot-color: #959DB1;
+            --circle-container-offset: calc((var(--circle-container-diameter) - var(--container-height)) / 2 * -1);
+            --stars-color: #fff;
+            --clouds-color: #F3FDFF;
+            --back-clouds-color: #AACADF;
+            --transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
+            --circle-transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
+        }
+
+            .theme-switch-compact,
+            .theme-switch-compact *,
+            .theme-switch-compact *::before,
+            .theme-switch-compact *::after {
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-size: var(--toggle-size);
+            }
+
+        .theme-switch-compact__container {
+            width: var(--container-width);
+            height: var(--container-height);
+            background-color: var(--container-light-bg);
+            border-radius: var(--container-radius);
+            overflow: hidden;
+            cursor: pointer;
+            -webkit-box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
+            box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
+            -webkit-transition: var(--transition);
+            -o-transition: var(--transition);
+            transition: var(--transition);
+            position: relative;
+        }
+
+            .theme-switch-compact__container::before {
+                content: "";
+                position: absolute;
+                z-index: 1;
+                inset: 0;
+                -webkit-box-shadow: 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset, 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset;
+                box-shadow: 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset, 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset;
+                border-radius: var(--container-radius)
+            }
+
+        .theme-switch-compact__checkbox {
+            display: none;
+        }
+
+        .theme-switch-compact__circle-container {
+            width: var(--circle-container-diameter);
+            height: var(--circle-container-diameter);
+            background-color: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            left: var(--circle-container-offset);
+            top: var(--circle-container-offset);
+            border-radius: var(--container-radius);
+            -webkit-box-shadow: inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), 0 0 0 0.625em rgba(255, 255, 255, 0.1), 0 0 0 1.25em rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), 0 0 0 0.625em rgba(255, 255, 255, 0.1), 0 0 0 1.25em rgba(255, 255, 255, 0.1);
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-transition: var(--circle-transition);
+            -o-transition: var(--circle-transition);
+            transition: var(--circle-transition);
+            pointer-events: none;
+        }
+
+        .theme-switch-compact__sun-moon-container {
+            pointer-events: auto;
+            position: relative;
+            z-index: 2;
+            width: var(--sun-moon-diameter);
+            height: var(--sun-moon-diameter);
+            margin: auto;
+            border-radius: var(--container-radius);
+            background-color: var(--sun-bg);
+            -webkit-box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset;
+            box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset;
+            -webkit-filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
+            overflow: hidden;
+            -webkit-transition: var(--transition);
+            -o-transition: var(--transition);
+            transition: var(--transition);
+        }
+
+        .theme-switch-compact__moon {
+            -webkit-transform: translateX(100%);
+            -ms-transform: translateX(100%);
+            transform: translateX(100%);
+            width: 100%;
+            height: 100%;
+            background-color: var(--moon-bg);
+            border-radius: inherit;
+            -webkit-box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset;
+            box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset;
+            -webkit-transition: var(--transition);
+            -o-transition: var(--transition);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .theme-switch-compact__spot {
+            position: absolute;
+            top: 0.45em;
+            left: 0.2em;
+            width: 0.45em;
+            height: 0.45em;
+            border-radius: var(--container-radius);
+            background-color: var(--spot-color);
+            -webkit-box-shadow: 0em 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset;
+            box-shadow: 0em 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset;
+        }
+
+            .theme-switch-compact__spot:nth-of-type(2) {
+                width: 0.225em;
+                height: 0.225em;
+                top: 0.562em;
+                left: 0.825em;
+            }
+
+            .theme-switch-compact__spot:nth-last-of-type(3) {
+                width: 0.15em;
+                height: 0.15em;
+                top: 0.187em;
+                left: 0.487em;
+            }
+
+        .theme-switch-compact__clouds {
+            width: 0.75em;
+            height: 0.75em;
+            background-color: var(--clouds-color);
+            border-radius: var(--container-radius);
+            position: absolute;
+            bottom: -0.375em;
+            left: 0.187em;
+            -webkit-box-shadow: 0.562em 0.187em var(--clouds-color), -0.187em -0.187em var(--back-clouds-color), 0.862em 0.225em var(--clouds-color), 0.3em -0.075em var(--back-clouds-color), 1.312em 0 var(--clouds-color), 0.75em -0.037em var(--back-clouds-color), 1.762em 0.187em var(--clouds-color), 1.2em -0.187em var(--back-clouds-color), 2.175em -0.037em var(--clouds-color), 1.575em 0em var(--back-clouds-color), 2.7em -0.187em var(--clouds-color), 2.025em -0.262em var(--back-clouds-color), 2.775em -1.05em 0 0.262em var(--clouds-color), 2.4em -0.375em var(--back-clouds-color), 2.475em -1.275em 0 0.262em var(--back-clouds-color);
+            box-shadow: 0.562em 0.187em var(--clouds-color), -0.187em -0.187em var(--back-clouds-color), 0.862em 0.225em var(--clouds-color), 0.3em -0.075em var(--back-clouds-color), 1.312em 0 var(--clouds-color), 0.75em -0.037em var(--back-clouds-color), 1.762em 0.187em var(--clouds-color), 1.2em -0.187em var(--back-clouds-color), 2.175em -0.037em var(--clouds-color), 1.575em 0em var(--back-clouds-color), 2.7em -0.187em var(--clouds-color), 2.025em -0.262em var(--back-clouds-color), 2.775em -1.05em 0 0.262em var(--clouds-color), 2.4em -0.375em var(--back-clouds-color), 2.475em -1.275em 0 0.262em var(--back-clouds-color);
+            -webkit-transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25);
+            -o-transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25);
+            transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25);
+        }
+
+        .theme-switch-compact__stars-container {
+            position: absolute;
+            color: var(--stars-color);
+            top: -100%;
+            left: 0.187em;
+            width: 1.65em;
+            height: auto;
+            -webkit-transition: var(--transition);
+            -o-transition: var(--transition);
+            transition: var(--transition);
+        }
+
+        /* actions */
+        .theme-switch-compact__checkbox:checked + .theme-switch-compact__container {
+            background-color: var(--container-night-bg);
+        }
+
+            .theme-switch-compact__checkbox:checked + .theme-switch-compact__container .theme-switch-compact__circle-container {
+                left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter));
+            }
+
+                .theme-switch-compact__checkbox:checked + .theme-switch-compact__container .theme-switch-compact__circle-container:hover {
+                    left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.112em)
+                }
+
+        .theme-switch-compact__circle-container:hover {
+            left: calc(var(--circle-container-offset) + 0.112em);
+        }
+
+        .theme-switch-compact__checkbox:checked + .theme-switch-compact__container .theme-switch-compact__moon {
+            -webkit-transform: translate(0);
+            -ms-transform: translate(0);
+            transform: translate(0);
+        }
+
+        .theme-switch-compact__checkbox:checked + .theme-switch-compact__container .theme-switch-compact__clouds {
+            bottom: -2.437em;
+        }
+
+        .theme-switch-compact__checkbox:checked + .theme-switch-compact__container .theme-switch-compact__stars-container {
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        /* Ajustes para el botón en el navbar */
+        .navbar .theme-switch-compact {
+            margin-left: 10px;
+        }
+
+        /* Ajustes para el botón en el footer */
+        .footer .theme-switch-compact {
+            margin-left: auto;
+        }
+    </style>
 </head>
+@RenderSection("ParticleBackground", required: false)
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-purple border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">integradorGD</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CodeMaster</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,39 +250,202 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
+
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ListaProblema">Problemas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ranking">Ranking</a>
+                            </li>
+                        }
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ListaProblema">Problemas</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Nosotros">Nosotros</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Ranking</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Nosotros</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="PreguntasFrecuentes">Preguntas Frecuentes</a>
                         </li>
                     </ul>
+
                     <div class="d-flex align-items-center">
-                        <button id="themeToggle" class="btn btn-sm btn-outline-dark ms-2">
-                            <i class="bi bi-moon-stars"></i>
-                        </button>
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <!-- Menú desplegable del usuario -->
+                            <div class="dropdown">
+                                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @{
+                                        var imagenPerfilUrl = User.FindFirst("ImagenPerfilUrl")?.Value ?? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+                                        var nombre = User.FindFirst("Nombre")?.Value;
+                                        var apellido = User.FindFirst("Apellido")?.Value;
+                                    }
+                                    <img src="@imagenPerfilUrl"
+                                         alt="Foto de perfil"
+                                         width="32"
+                                         height="32"
+                                         class="rounded-circle me-2 object-fit-cover"
+                                         style="object-fit: cover;"
+                                         onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'" />
+                                    <span>@nombre @apellido</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownUser">
+                                    <li>
+                                        <a asp-controller="Profile" asp-action="Edit" class="dropdown-item">
+                                            <i class="bi bi-pencil-square me-2"></i>Editar perfil
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <form asp-controller="Auth" asp-action="Logout" method="post" class="d-inline">
+                                            <button type="submit" class="dropdown-item">
+                                                <i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-light ms-2" href="@Url.Action("Login", "Auth")">Ingresar</a>
+                            <a class="btn btn-outline-light ms-2" href="@Url.Action("Register", "Auth")">Registrarse</a>
+                        }
+                        <!-- Nuevo botón de cambio de tema compacto -->
+                        <div class="theme-switch-compact">
+                            <input type="checkbox" id="themeToggle" class="theme-switch-compact__checkbox">
+                            <label for="themeToggle" class="theme-switch-compact__container">
+                                <div class="theme-switch-compact__circle-container">
+                                    <div class="theme-switch-compact__sun-moon-container">
+                                        <div class="theme-switch-compact__moon">
+                                            <div class="theme-switch-compact__spot"></div>
+                                            <div class="theme-switch-compact__spot"></div>
+                                            <div class="theme-switch-compact__spot"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="theme-switch-compact__clouds"></div>
+                                <div class="theme-switch-compact__stars-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 12" width="96" height="12">
+                                        <g fill="currentColor">
+                                            <circle cx="6" cy="6" r="0.9"></circle>
+                                            <circle cx="18" cy="1.8" r="0.6"></circle>
+                                            <circle cx="30" cy="6" r="0.9"></circle>
+                                            <circle cx="42" cy="1.8" r="0.6"></circle>
+                                            <circle cx="54" cy="6" r="0.9"></circle>
+                                            <circle cx="66" cy="1.8" r="0.6"></circle>
+                                            <circle cx="78" cy="6" r="0.9"></circle>
+                                            <circle cx="90" cy="1.8" r="0.6"></circle>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-5">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer pt-5 pb-4">
         <div class="container">
-            &copy; 2025 - integradorGD - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-gradient mb-4">CodeMaster</h5>
+                    <p>La plataforma líder para mejorar tus habilidades de programación mediante desafíos y competencias.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-4">Secciones</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a asp-controller="Home" asp-action="Index" class="text-white-50 text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a asp-controller="Home" asp-action="ListaProblema" class="text-white-50 text-decoration-none">Problemas</a></li>
+                        <li class="mb-2"><a asp-controller="Home" asp-action="Ranking" class="text-white-50 text-decoration-none">Ranking</a></li>
+                        <li class="mb-2"><a asp-controller="Home" asp-action="Nosotros" class="text-white-50 text-decoration-none">Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-4">Legal</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a asp-controller="Home" asp-action="Privacy" class="text-white-50 text-decoration-none">Privacidad</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Términos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Cookies</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-4">¡Aprende Divirtiéndote!</h5>
+                    <div class="coding-animation">
+                        <img src="https://media.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif"
+                             alt="Programador animado"
+                             class="img-fluid rounded"
+                             style="max-height: 150px;">
+                    </div>
+                    <p class="mt-3">La programación es un superpoder que todos pueden aprender.</p>
+                </div>
+            </div>
+
+            <hr class="my-4 bg-secondary">
+
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 CodeMaster. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="theme-switch-compact">
+                        <input type="checkbox" id="footerThemeToggle" class="theme-switch-compact__checkbox">
+                        <label for="footerThemeToggle" class="theme-switch-compact__container">
+                            <div class="theme-switch-compact__circle-container">
+                                <div class="theme-switch-compact__sun-moon-container">
+                                    <div class="theme-switch-compact__moon">
+                                        <div class="theme-switch-compact__spot"></div>
+                                        <div class="theme-switch-compact__spot"></div>
+                                        <div class="theme-switch-compact__spot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="theme-switch-compact__clouds"></div>
+                            <div class="theme-switch-compact__stars-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 12" width="96" height="12">
+                                    <g fill="currentColor">
+                                        <circle cx="6" cy="6" r="0.9"></circle>
+                                        <circle cx="18" cy="1.8" r="0.6"></circle>
+                                        <circle cx="30" cy="6" r="0.9"></circle>
+                                        <circle cx="42" cy="1.8" r="0.6"></circle>
+                                        <circle cx="54" cy="6" r="0.9"></circle>
+                                        <circle cx="66" cy="1.8" r="0.6"></circle>
+                                        <circle cx="78" cy="6" r="0.9"></circle>
+                                        <circle cx="90" cy="1.8" r="0.6"></circle>
+                                    </g>
+                                </svg>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
     <script>
-        // Función para cambiar el tema y guardar preferencia
+        // Función para cambiar el tema
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-bs-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -66,15 +453,9 @@
             document.documentElement.setAttribute('data-bs-theme', newTheme);
             localStorage.setItem('theme', newTheme);
 
-            // Actualizar icono
-            const themeIcon = document.getElementById('themeToggle').querySelector('i');
-            themeIcon.className = newTheme === 'dark' ? 'bi bi-moon-stars' : 'bi bi-sun';
-
-            // Cambiar clase del botón para el tema claro/oscuro
-            const themeButton = document.getElementById('themeToggle');
-            themeButton.className = newTheme === 'dark'
-                ? 'btn btn-sm btn-outline-light ms-2'
-                : 'btn btn-sm btn-outline-dark ms-2';
+            // Actualizar checkboxes
+            document.getElementById('themeToggle').checked = newTheme === 'dark';
+            document.getElementById('footerThemeToggle').checked = newTheme === 'dark';
         }
 
         // Cargar tema guardado al iniciar
@@ -83,25 +464,38 @@
             if (savedTheme) {
                 document.documentElement.setAttribute('data-bs-theme', savedTheme);
 
-                // Actualizar icono según el tema guardado
-                const themeIcon = document.getElementById('themeToggle').querySelector('i');
-                themeIcon.className = savedTheme === 'dark' ? 'bi bi-moon-stars' : 'bi bi-sun';
-
-                // Actualizar clase del botón
-                const themeButton = document.getElementById('themeToggle');
-                themeButton.className = savedTheme === 'dark'
-                    ? 'btn btn-sm btn-outline-light ms-2'
-                    : 'btn btn-sm btn-outline-dark ms-2';
+                // Actualizar checkboxes
+                document.getElementById('themeToggle').checked = savedTheme === 'dark';
+                document.getElementById('footerThemeToggle').checked = savedTheme === 'dark';
             }
 
-            // Asignar evento al botón
-            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            // Asignar eventos a los botones de tema
+            document.getElementById('themeToggle').addEventListener('change', toggleTheme);
+            document.getElementById('footerThemeToggle').addEventListener('change', toggleTheme);
+
+            // Configurar el observador de cambios de tema para la transición
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.attributeName === 'data-bs-theme') {
+                        // Aplicar clase de transición para el cambio de fondo
+                        document.body.classList.add('theme-changing');
+
+                        // Eliminar la clase después de que termine la transición
+                        setTimeout(() => {
+                            document.body.classList.remove('theme-changing');
+                        }, 1200);
+                    }
+                });
+            });
+
+            // Observar cambios en el atributo data-bs-theme del elemento html
+            observer.observe(document.documentElement, {
+                attributes: true,
+                attributeFilter: ['data-bs-theme']
+            });
         });
     </script>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

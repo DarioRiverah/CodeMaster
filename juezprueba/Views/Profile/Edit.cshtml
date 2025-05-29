@@ -1,0 +1,554 @@
+﻿@model juezprueba.ViewModels.EditarPerfilViewModel
+
+@{
+    ViewData["Title"] = "Editar Perfil";
+}
+
+<!-- Custom CSS para el perfil -->
+<style>
+    :root {
+        --primary-color: #6366f1;
+        --primary-hover: #4f46e5;
+        --success-color: #10b981;
+        --success-hover: #059669;
+        --danger-color: #ef4444;
+        --warning-color: #f59e0b;
+        --purple-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --card-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --card-shadow-hover: 0 20px 40px -4px rgba(0, 0, 0, 0.15), 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+    }
+
+    [data-bs-theme="dark"] {
+        --card-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+        --card-shadow-hover: 0 20px 40px -4px rgba(0, 0, 0, 0.4), 0 8px 16px -4px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-card {
+        border: none;
+        border-radius: 20px;
+        box-shadow: var(--card-shadow);
+        transition: all 0.3s ease;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+    }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+    .profile-header {
+        background: var(--purple-gradient);
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+    @@keyframes shimmer {
+        0%, 100%
+
+    {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    }
+
+    .profile-title {
+        position: relative;
+        z-index: 2;
+        font-weight: 700;
+        font-size: 1.75rem;
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .profile-avatar-container {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 1.5rem;
+    }
+
+    .profile-avatar {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+        .profile-avatar:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+    .avatar-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+    }
+
+    .profile-avatar-container:hover .avatar-overlay {
+        opacity: 1;
+    }
+
+    .camera-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        border: 3px solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+        .camera-btn:hover {
+            background: var(--primary-hover);
+            transform: scale(1.1);
+        }
+
+    .form-floating {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        border: 2px solid transparent;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        background-color: var(--bs-body-bg);
+    }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.25);
+            transform: translateY(-2px);
+        }
+
+    .btn-modern {
+        border-radius: 12px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-modern:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+    .btn-primary-modern {
+        background: var(--primary-color);
+        color: white;
+    }
+
+        .btn-primary-modern:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+        }
+
+    .btn-success-modern {
+        background: var(--success-color);
+        color: white;
+    }
+
+        .btn-success-modern:hover {
+            background: var(--success-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+    .alert-modern {
+        border: none;
+        border-radius: 12px;
+        padding: 1rem 1.5rem;
+        margin-bottom: 1.5rem;
+        backdrop-filter: blur(10px);
+    }
+
+    .loading-spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+    }
+
+    @@keyframes spin {
+        to
+
+    {
+        transform: rotate(360deg);
+    }
+
+    }
+
+    .fade-in {
+        animation: fadeIn 0.6s ease-out;
+    }
+
+    @@keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    .file-info {
+        font-size: 0.875rem;
+        color: var(--bs-secondary);
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        background: var(--bs-secondary-bg);
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    /* Animación de carga de imagen */
+    .image-loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 50%;
+        backdrop-filter: blur(10px);
+    }
+
+    [data-bs-theme="dark"] .image-loading {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Responsive adjustments */
+    @@media (max-width: 768px) {
+        .profile-header
+
+    {
+        padding: 1.5rem;
+    }
+
+    .profile-title {
+        font-size: 1.5rem;
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .btn-modern {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    }
+</style>
+
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-10">
+            <div class="card profile-card fade-in">
+                <!-- Header con gradiente -->
+                <div class="profile-header text-white text-center">
+                    <h1 class="profile-title">
+                        <i class="fas fa-user-edit me-3"></i>
+                        Editar Mi Perfil
+                    </h1>
+                    <p class="mb-0 opacity-75">Personaliza tu información personal</p>
+                </div>
+
+                <div class="card-body p-4">
+                    <!-- Mensaje de éxito -->
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-modern">
+                            <i class="fas fa-check-circle me-2"></i>
+                            @TempData["SuccessMessage"]
+                        </div>
+                    }
+
+                    <form asp-action="Edit" enctype="multipart/form-data" method="post" id="profileForm">
+                        <div class="row">
+                            <!-- Sección de imagen de perfil -->
+                            <div class="col-lg-4">
+                                <div class="text-center mb-4">
+                                    <div class="profile-avatar-container">
+                                        <img id="imagePreview"
+                                             src="@(string.IsNullOrEmpty(Model.ImagenActualUrl) ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" : Model.ImagenActualUrl)"
+                                             class="profile-avatar"
+                                             alt="Foto de perfil"
+                                             onclick="document.getElementById('ImagenPerfil').click()" />
+
+                                        <div class="avatar-overlay" onclick="document.getElementById('ImagenPerfil').click()">
+                                            <i class="fas fa-camera text-white fs-4"></i>
+                                        </div>
+
+                                        <div class="camera-btn" onclick="document.getElementById('ImagenPerfil').click()">
+                                            <i class="fas fa-camera text-white"></i>
+                                        </div>
+
+                                        <div id="imageLoading" class="image-loading d-none">
+                                            <div class="loading-spinner"></div>
+                                        </div>
+                                    </div>
+
+                                    <input asp-for="ImagenPerfil" type="file" class="d-none" id="ImagenPerfil" accept="image/*" onchange="previewImage(this)" />
+                                    <input type="hidden" asp-for="ImagenActualUrl" />
+
+                                    <div class="file-info">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        Formatos soportados: JPG, PNG, GIF
+                                        <br>
+                                        <small>Tamaño máximo: 5MB</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sección del formulario -->
+                            <div class="col-lg-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input asp-for="Nombre" class="form-control" placeholder="Nombre" />
+                                            <label asp-for="Nombre">
+                                                <i class="fas fa-user me-2"></i>Nombre
+                                            </label>
+                                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input asp-for="Apellido" class="form-control" placeholder="Apellido" />
+                                            <label asp-for="Apellido">
+                                                <i class="fas fa-user me-2"></i>Apellido
+                                            </label>
+                                            <span asp-validation-for="Apellido" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input asp-for="Direccion" class="form-control" placeholder="Dirección" />
+                                    <label asp-for="Direccion">
+                                        <i class="fas fa-map-marker-alt me-2"></i>Dirección
+                                    </label>
+                                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input asp-for="FechaNacimiento" type="date" class="form-control" placeholder="Fecha de Nacimiento" />
+                                    <label asp-for="FechaNacimiento">
+                                        <i class="fas fa-calendar-alt me-2"></i>Fecha de Nacimiento
+                                    </label>
+                                    <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-floating">
+                                    <textarea asp-for="Biografia" class="form-control" placeholder="Biografía" rows="4" style="height: 120px;"></textarea>
+                                    <label asp-for="Biografia">
+                                        <i class="fas fa-pen me-2"></i>Biografía
+                                    </label>
+                                    <span asp-validation-for="Biografia" class="text-danger"></span>
+                                </div>
+
+                                <!-- Botones de acción -->
+                                <div class="d-flex flex-wrap gap-3 justify-content-end mt-4">
+                                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary btn-modern">
+                                        <i class="fas fa-times me-2"></i>
+                                        Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-success-modern btn-modern" id="submitBtn">
+                                        <i class="fas fa-save me-2"></i>
+                                        Guardar Cambios
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        // Vista previa de imagen mejorada
+        function previewImage(input) {
+            const preview = document.getElementById('imagePreview');
+            const loading = document.getElementById('imageLoading');
+            const container = document.querySelector('.profile-avatar-container');
+
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+
+                // Validar tamaño del archivo (5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('El archivo es demasiado grande. Por favor, selecciona una imagen menor a 5MB.');
+                    input.value = '';
+                    return;
+                }
+
+                // Validar tipo de archivo
+                if (!file.type.match(/^image\/(jpeg|jpg|png|gif)$/)) {
+                    alert('Por favor, selecciona un archivo de imagen válido (JPG, PNG, GIF).');
+                    input.value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                // Mostrar loading
+                loading.classList.remove('d-none');
+                preview.style.opacity = '0.5';
+
+                reader.onload = function(e) {
+                    // Simular un pequeño delay para mostrar la animación
+                    setTimeout(() => {
+                        preview.src = e.target.result;
+                        preview.style.opacity = '1';
+                        loading.classList.add('d-none');
+
+                        // Añadir efecto de éxito
+                        container.style.transform = 'scale(1.05)';
+                        setTimeout(() => {
+                            container.style.transform = 'scale(1)';
+                        }, 200);
+                    }, 500);
+                }
+
+                reader.onerror = function() {
+                    loading.classList.add('d-none');
+                    preview.style.opacity = '1';
+                    alert('Error al cargar la imagen. Por favor, inténtalo de nuevo.');
+                }
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Mejorar el envío del formulario
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            const submitBtn = document.getElementById('submitBtn');
+            const form = this;
+
+            // Deshabilitar botón y mostrar loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <span class="loading-spinner me-2"></span>
+                Guardando cambios...
+            `;
+
+            // Añadir clase de loading al formulario
+            form.style.opacity = '0.7';
+            form.style.pointerEvents = 'none';
+
+            // Si hay errores de validación, revertir el estado
+            setTimeout(() => {
+                if (!form.checkValidity()) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `
+                        <i class="fas fa-save me-2"></i>
+                        Guardar Cambios
+                    `;
+                    form.style.opacity = '1';
+                    form.style.pointerEvents = 'auto';
+                }
+            }, 100);
+        });
+
+        // Animaciones al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animar elementos del formulario
+            const formElements = document.querySelectorAll('.form-floating');
+            formElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+
+                setTimeout(() => {
+                    element.style.transition = 'all 0.6s ease';
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            // Efecto de focus mejorado
+            const inputs = document.querySelectorAll('.form-control');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-2px)';
+                });
+
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'translateY(0)';
+                });
+            });
+        });
+
+        // Tooltip para la imagen de perfil
+        document.getElementById('imagePreview').setAttribute('title', 'Haz clic para cambiar tu foto de perfil');
+    </script>
+}
