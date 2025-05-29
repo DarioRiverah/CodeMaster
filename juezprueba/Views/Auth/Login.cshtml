@@ -6,11 +6,12 @@
 
 <div class="auth-wrapper">
     <div class="auth-container">
-        <!-- Sección de imagen con fondo -->
-        <div class="auth-side-panel">
+        <!-- Sección de imagen -->
+        <div class="auth-side-panel bg-primary bg-opacity-10">
             <div class="auth-side-content">
                 <h2 class="display-5 fw-bold mb-4">¡Bienvenido de vuelta!</h2>
                 <p class="lead mb-5">Conéctate para acceder a todos los problemas y desafíos.</p>
+                <img src="https://via.placeholder.com/400x300" alt="Login" class="img-fluid rounded-4 shadow">
             </div>
         </div>
 
@@ -22,7 +23,7 @@
                     <p class="text-muted">Ingresa tus credenciales para acceder</p>
                 </div>
 
-                <form asp-action="Login" method="post" class="needs-validation" >
+                <form asp-action="Login" method="post" class="needs-validation" novalidate>
                     <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
                     <div class="mb-4">
@@ -51,7 +52,7 @@
                         <label asp-for="RememberMe" class="form-check-label">Recordar mi sesión</label>
                     </div>
 
-                    <button type="submit" class="btn btn-success btn-lg w-100 mb-3">
+                    <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
                         <i class="fas fa-sign-in-alt me-2"></i>Ingresar
                     </button>
 
@@ -59,17 +60,6 @@
                         <p class="mb-0">¿No tienes una cuenta? <a asp-action="Register" class="text-decoration-none">Regístrate aquí</a></p>
                     </div>
                 </form>
-
-                <!-- FORMULARIO DE LOGIN CON GOOGLE (SEPARADO) -->
-                <form asp-action="ExternalLogin" asp-controller="Auth" method="post" class="d-flex justify-content-center mt-4">
-                    @Html.AntiForgeryToken()
-                    <input type="hidden" name="provider" value="Google" />
-                    <button type="submit" class="btn btn-danger btn-lg d-flex align-items-center">
-                        <i class="fab fa-google me-2"></i> <!-- Icono de Google -->
-                        Iniciar sesión con Google
-                    </button>
-                </form>
-
             </div>
         </div>
     </div>
@@ -100,28 +90,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            position: relative;
+            background-color: rgba(var(--bs-primary-rgb), 0.1);
         }
-
-            .auth-side-panel::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgba(111, 66, 193, 0.7); /* Morado con opacidad */
-            }
 
         .auth-side-content {
             max-width: 400px;
             text-align: center;
-            position: relative;
-            z-index: 1;
-            color: white;
         }
 
         .auth-main-panel {
@@ -139,17 +113,6 @@
         .toggle-password {
             cursor: pointer;
         }
-
-        /* Estilo adicional para el botón verde */
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
-        }
-
-            .btn-success:hover {
-                background-color: #218838;
-                border-color: #1e7e34;
-            }
 
         @@media (max-width: 768px) {
             .auth-container {
@@ -169,25 +132,10 @@
 }
 
 @section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
-        // Mostrar alerta de error si hay mensaje en TempData
-        @if (TempData["LoginError"] != null)
-        {
-            <text>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error de inicio de sesión',
-                    text: '@TempData["LoginError"]',
-                    confirmButtonColor: '#d33'
-                });
-            </text>
-        }
-
         // Toggle password visibility
         document.querySelectorAll('.toggle-password').forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function() {
                 const input = this.closest('.input-group').querySelector('input');
                 const icon = this.querySelector('i');
 
@@ -195,7 +143,7 @@
                     input.type = 'text';
                     icon.classList.replace('fa-eye', 'fa-eye-slash');
                 } else {
-                    input.type = 'passwordnovalidate
+                    input.type = 'password';
                     icon.classList.replace('fa-eye-slash', 'fa-eye');
                 }
             });
@@ -216,8 +164,6 @@
                     form.classList.add('was-validated')
                 }, false)
             })
-        })();
+        })()
     </script>
-}
-
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vtzs9iCarHMqxW/mQfuKu4cKG+YsfzmK5LXuMD2aMpA=",
+  "Hash": "DrgklSwA2StgKIwkfVs3UkI7YLoMLsqRH5e/gPVxcz4=",
   "Source": "juezprueba",
   "BasePath": "_content/juezprueba",
   "Mode": "Default",
@@ -2243,90 +2243,6 @@
       "OriginalItemSpec": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\juezprueba.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\animatedBackground.css",
-      "SourceId": "juezprueba",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\",
-      "BasePath": "_content/juezprueba",
-      "RelativePath": "css/animatedBackground#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "41zcpkzjh5",
-      "Integrity": "WLUhGM6x06YQzYxyYONLa8754KSZRpK4zFFBAhpRsZo=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\animatedBackground.css"
-    },
-    {
-      "Identity": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\frecuentes.css",
-      "SourceId": "juezprueba",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\",
-      "BasePath": "_content/juezprueba",
-      "RelativePath": "css/frecuentes#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "kp418eud8m",
-      "Integrity": "6BGgvdSmrCyUBxUpbN5EVliWbMccHGardH4aOXS4Yhs=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\frecuentes.css"
-    },
-    {
-      "Identity": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\indexHome.css",
-      "SourceId": "juezprueba",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\",
-      "BasePath": "_content/juezprueba",
-      "RelativePath": "css/indexHome#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "p2k214s1ej",
-      "Integrity": "IQOE2D9wBJ1SgJn50nyarROQKjlhoLZ7FDGU+js0w5Q=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\indexHome.css"
-    },
-    {
-      "Identity": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\nosotros.css",
-      "SourceId": "juezprueba",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\",
-      "BasePath": "_content/juezprueba",
-      "RelativePath": "css/nosotros#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "egmpo7c7gx",
-      "Integrity": "Eq6Pne2kd8ikdlBpkQ1avButbMAk4Ahv2xLfqiaWATs=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\nosotros.css"
-    },
-    {
       "Identity": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\site.css",
       "SourceId": "juezprueba",
       "SourceType": "Discovered",
@@ -2341,8 +2257,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "84dcmtszds",
-      "Integrity": "aLdWdq2+0tkmJgKVdYoCe/mvyi6VRMmVvvZOHTzks7E=",
+      "Fingerprint": "prtn9pmug3",
+      "Integrity": "i3xrQYU1J9Lkcc/jTZeS9/G18njMiCsiu5+KqNZJLi4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -2367,27 +2283,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
-    },
-    {
-      "Identity": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\js\\particleBackground.js",
-      "SourceId": "juezprueba",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\",
-      "BasePath": "_content/juezprueba",
-      "RelativePath": "js/particleBackground#[.{fingerprint}]?.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "5njtqbxswh",
-      "Integrity": "T4G3EY45DAOvG2Sw1K3v/BUMGxsrsOhn4mCPgPAOt6E=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\particleBackground.js"
     },
     {
       "Identity": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\js\\site.js",
@@ -3609,88 +3504,6 @@
     }
   ],
   "Endpoints": [
-    {
-      "Route": "css/animatedBackground.41zcpkzjh5.css",
-      "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\animatedBackground.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1209"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"WLUhGM6x06YQzYxyYONLa8754KSZRpK4zFFBAhpRsZo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 29 May 2025 19:48:05 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "41zcpkzjh5"
-        },
-        {
-          "Name": "label",
-          "Value": "css/animatedBackground.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-WLUhGM6x06YQzYxyYONLa8754KSZRpK4zFFBAhpRsZo="
-        }
-      ]
-    },
-    {
-      "Route": "css/animatedBackground.css",
-      "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\animatedBackground.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1209"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"WLUhGM6x06YQzYxyYONLa8754KSZRpK4zFFBAhpRsZo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 29 May 2025 19:48:05 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-WLUhGM6x06YQzYxyYONLa8754KSZRpK4zFFBAhpRsZo="
-        }
-      ]
-    },
     {
       "Route": "css/bootstrap.css",
       "AssetFile": "C:\\Users\\Dario Rivera\\.nuget\\packages\\bootstrap\\5.3.3\\contentFiles\\any\\any\\wwwroot\\css\\bootstrap.css",
@@ -6316,297 +6129,6 @@
       ]
     },
     {
-      "Route": "css/frecuentes.css",
-      "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\frecuentes.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "8848"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"6BGgvdSmrCyUBxUpbN5EVliWbMccHGardH4aOXS4Yhs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 29 May 2025 21:27:22 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-6BGgvdSmrCyUBxUpbN5EVliWbMccHGardH4aOXS4Yhs="
-        }
-      ]
-    },
-    {
-      "Route": "css/frecuentes.kp418eud8m.css",
-      "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\frecuentes.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "8848"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"6BGgvdSmrCyUBxUpbN5EVliWbMccHGardH4aOXS4Yhs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 29 May 2025 21:27:22 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "kp418eud8m"
-        },
-        {
-          "Name": "label",
-          "Value": "css/frecuentes.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-6BGgvdSmrCyUBxUpbN5EVliWbMccHGardH4aOXS4Yhs="
-        }
-      ]
-    },
-    {
-      "Route": "css/indexHome.css",
-      "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\indexHome.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "12631"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"IQOE2D9wBJ1SgJn50nyarROQKjlhoLZ7FDGU+js0w5Q=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 25 May 2025 16:52:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-IQOE2D9wBJ1SgJn50nyarROQKjlhoLZ7FDGU+js0w5Q="
-        }
-      ]
-    },
-    {
-      "Route": "css/indexHome.p2k214s1ej.css",
-      "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\indexHome.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "12631"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"IQOE2D9wBJ1SgJn50nyarROQKjlhoLZ7FDGU+js0w5Q=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 25 May 2025 16:52:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "p2k214s1ej"
-        },
-        {
-          "Name": "label",
-          "Value": "css/indexHome.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-IQOE2D9wBJ1SgJn50nyarROQKjlhoLZ7FDGU+js0w5Q="
-        }
-      ]
-    },
-    {
-      "Route": "css/nosotros.css",
-      "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\nosotros.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "11469"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Eq6Pne2kd8ikdlBpkQ1avButbMAk4Ahv2xLfqiaWATs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 29 May 2025 21:07:43 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-Eq6Pne2kd8ikdlBpkQ1avButbMAk4Ahv2xLfqiaWATs="
-        }
-      ]
-    },
-    {
-      "Route": "css/nosotros.egmpo7c7gx.css",
-      "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\nosotros.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "11469"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Eq6Pne2kd8ikdlBpkQ1avButbMAk4Ahv2xLfqiaWATs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 29 May 2025 21:07:43 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "egmpo7c7gx"
-        },
-        {
-          "Name": "label",
-          "Value": "css/nosotros.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-Eq6Pne2kd8ikdlBpkQ1avButbMAk4Ahv2xLfqiaWATs="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.84dcmtszds.css",
-      "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "4422"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"aLdWdq2+0tkmJgKVdYoCe/mvyi6VRMmVvvZOHTzks7E=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 29 May 2025 21:16:02 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "84dcmtszds"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-aLdWdq2+0tkmJgKVdYoCe/mvyi6VRMmVvvZOHTzks7E="
-        }
-      ]
-    },
-    {
       "Route": "css/site.css",
       "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -6617,7 +6139,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4422"
+          "Value": "2043"
         },
         {
           "Name": "Content-Type",
@@ -6625,11 +6147,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"aLdWdq2+0tkmJgKVdYoCe/mvyi6VRMmVvvZOHTzks7E=\""
+          "Value": "\"i3xrQYU1J9Lkcc/jTZeS9/G18njMiCsiu5+KqNZJLi4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 29 May 2025 21:16:02 GMT"
+          "Value": "Mon, 12 May 2025 00:10:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6639,7 +6161,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-aLdWdq2+0tkmJgKVdYoCe/mvyi6VRMmVvvZOHTzks7E="
+          "Value": "sha256-i3xrQYU1J9Lkcc/jTZeS9/G18njMiCsiu5+KqNZJLi4="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.prtn9pmug3.css",
+      "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2043"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"i3xrQYU1J9Lkcc/jTZeS9/G18njMiCsiu5+KqNZJLi4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 12 May 2025 00:10:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "prtn9pmug3"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-i3xrQYU1J9Lkcc/jTZeS9/G18njMiCsiu5+KqNZJLi4="
         }
       ]
     },
@@ -9926,88 +9493,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-+UW802wgVfnjaSbdwyHLlU7AVplb0WToOlvN1CnzIac="
-        }
-      ]
-    },
-    {
-      "Route": "js/particleBackground.5njtqbxswh.js",
-      "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\js\\particleBackground.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "3202"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"T4G3EY45DAOvG2Sw1K3v/BUMGxsrsOhn4mCPgPAOt6E=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 29 May 2025 19:47:07 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "5njtqbxswh"
-        },
-        {
-          "Name": "label",
-          "Value": "js/particleBackground.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-T4G3EY45DAOvG2Sw1K3v/BUMGxsrsOhn4mCPgPAOt6E="
-        }
-      ]
-    },
-    {
-      "Route": "js/particleBackground.js",
-      "AssetFile": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\js\\particleBackground.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "3202"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"T4G3EY45DAOvG2Sw1K3v/BUMGxsrsOhn4mCPgPAOt6E=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 29 May 2025 19:47:07 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-T4G3EY45DAOvG2Sw1K3v/BUMGxsrsOhn4mCPgPAOt6E="
         }
       ]
     },

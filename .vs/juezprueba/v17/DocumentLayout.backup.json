@@ -3,48 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\views\\problemas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\views\\problemas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\views\\auth\\emailconfirmed.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\views\\auth\\emailconfirmed.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\views\\auth\\confirmemailsent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\views\\auth\\confirmemailsent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\views\\auth\\resendemailconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\views\\auth\\resendemailconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\views\\auth\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\views\\auth\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\models\\applicationclaimsprincipalfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\models\\applicationclaimsprincipalfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\services\\emailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\services\\emailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\services\\iemailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\services\\iemailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\wwwroot\\css\\frecuentes.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\wwwroot\\css\\frecuentes.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|c:\\users\\dario rivera\\desktop\\desarrollo\\codemaster\\juezprueba\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04CEEACF-2EE9-4841-A79C-547CD62A518F}|juezprueba\\juezprueba.csproj|solutionrelative:juezprueba\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 755,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,144 +46,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ResendEmailConfirmation.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Views\\Auth\\ResendEmailConfirmation.cshtml",
-              "RelativeDocumentMoniker": "juezprueba\\Views\\Auth\\ResendEmailConfirmation.cshtml",
-              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Views\\Auth\\ResendEmailConfirmation.cshtml",
-              "RelativeToolTip": "juezprueba\\Views\\Auth\\ResendEmailConfirmation.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T22:17:35.555Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Error.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Views\\Auth\\Error.cshtml",
-              "RelativeDocumentMoniker": "juezprueba\\Views\\Auth\\Error.cshtml",
-              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Views\\Auth\\Error.cshtml",
-              "RelativeToolTip": "juezprueba\\Views\\Auth\\Error.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T22:04:53.491Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "EmailConfirmed.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Views\\Auth\\EmailConfirmed.cshtml",
-              "RelativeDocumentMoniker": "juezprueba\\Views\\Auth\\EmailConfirmed.cshtml",
-              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Views\\Auth\\EmailConfirmed.cshtml",
-              "RelativeToolTip": "juezprueba\\Views\\Auth\\EmailConfirmed.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T22:04:10.753Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ConfirmEmailSent.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Views\\Auth\\ConfirmEmailSent.cshtml",
-              "RelativeDocumentMoniker": "juezprueba\\Views\\Auth\\ConfirmEmailSent.cshtml",
-              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Views\\Auth\\ConfirmEmailSent.cshtml",
-              "RelativeToolTip": "juezprueba\\Views\\Auth\\ConfirmEmailSent.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T22:03:48.663Z",
+              "Title": "ApplicationClaimsPrincipalFactory.cs",
+              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Models\\ApplicationClaimsPrincipalFactory.cs",
+              "RelativeDocumentMoniker": "juezprueba\\Models\\ApplicationClaimsPrincipalFactory.cs",
+              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Models\\ApplicationClaimsPrincipalFactory.cs",
+              "RelativeToolTip": "juezprueba\\Models\\ApplicationClaimsPrincipalFactory.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAwwCMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T17:17:47.342Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "juezprueba\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Controllers\\AuthController.cs*",
-              "RelativeToolTip": "juezprueba\\Controllers\\AuthController.cs*",
-              "ViewState": "AgIAADYAAAAAAAAAAAAMwFkAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T22:00:42.908Z",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Views\\Problemas\\Index.cshtml",
+              "RelativeDocumentMoniker": "juezprueba\\Views\\Problemas\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Views\\Problemas\\Index.cshtml*",
+              "RelativeToolTip": "juezprueba\\Views\\Problemas\\Index.cshtml*",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAADIAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-19T16:57:06.281Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "juezprueba\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "juezprueba\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAkwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T16:52:41.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Program.cs",
               "RelativeDocumentMoniker": "juezprueba\\Program.cs",
               "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Program.cs",
               "RelativeToolTip": "juezprueba\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAIwFsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T21:59:50.576Z",
+              "WhenOpened": "2025-05-19T16:52:04.347Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IEmailSender.cs",
-              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Services\\IEmailSender.cs",
-              "RelativeDocumentMoniker": "juezprueba\\Services\\IEmailSender.cs",
-              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Services\\IEmailSender.cs",
-              "RelativeToolTip": "juezprueba\\Services\\IEmailSender.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABKAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Context\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "juezprueba\\Context\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Context\\AppDbContext.cs",
+              "RelativeToolTip": "juezprueba\\Context\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T21:59:25.511Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "EmailSender.cs",
-              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Services\\EmailSender.cs",
-              "RelativeDocumentMoniker": "juezprueba\\Services\\EmailSender.cs",
-              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Services\\EmailSender.cs",
-              "RelativeToolTip": "juezprueba\\Services\\EmailSender.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T21:55:32.503Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\appsettings.json",
-              "RelativeDocumentMoniker": "juezprueba\\appsettings.json",
-              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\appsettings.json",
-              "RelativeToolTip": "juezprueba\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-29T21:54:20.833Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "juezprueba\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "juezprueba\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T21:19:24.617Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "frecuentes.css",
-              "DocumentMoniker": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\frecuentes.css",
-              "RelativeDocumentMoniker": "juezprueba\\wwwroot\\css\\frecuentes.css",
-              "ToolTip": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\frecuentes.css",
-              "RelativeToolTip": "juezprueba\\wwwroot\\css\\frecuentes.css",
-              "ViewState": "AgIAAIUBAAAAAAAAAAAAwLEBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-05-29T21:18:24.838Z",
+              "WhenOpened": "2025-05-19T16:48:10.226Z",
               "EditorCaption": ""
             }
           ]

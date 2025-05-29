@@ -240,6 +240,7 @@ namespace juezprueba.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Input")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OutputEsperado")
@@ -256,38 +257,6 @@ namespace juezprueba.Migrations
                     b.ToTable("CasosDePrueba");
                 });
 
-            modelBuilder.Entity("juezprueba.Models.PerfilUsuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Biografia")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Direccion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FechaNacimiento")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ImagenPerfilUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique();
-
-                    b.ToTable("PerfilesUsuario");
-                });
-
             modelBuilder.Entity("juezprueba.Models.Problema", b =>
                 {
                     b.Property<int>("Id")
@@ -300,13 +269,6 @@ namespace juezprueba.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Dificultad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Puntos")
-                        .HasColumnType("int");
-
                     b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -314,33 +276,6 @@ namespace juezprueba.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Problemas");
-                });
-
-            modelBuilder.Entity("juezprueba.Models.ProblemaResuelto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("FechaResolucion")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ProblemaId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UsuarioId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProblemaId");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("ProblemasResueltos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -403,42 +338,6 @@ namespace juezprueba.Migrations
                         .IsRequired();
 
                     b.Navigation("Problema");
-                });
-
-            modelBuilder.Entity("juezprueba.Models.PerfilUsuario", b =>
-                {
-                    b.HasOne("juezprueba.Models.ApplicationUser", "Usuario")
-                        .WithOne("Perfil")
-                        .HasForeignKey("juezprueba.Models.PerfilUsuario", "ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("juezprueba.Models.ProblemaResuelto", b =>
-                {
-                    b.HasOne("juezprueba.Models.Problema", "Problema")
-                        .WithMany()
-                        .HasForeignKey("ProblemaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("juezprueba.Models.ApplicationUser", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Problema");
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("juezprueba.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("Perfil")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("juezprueba.Models.Problema", b =>

@@ -1,503 +1,52 @@
 ﻿@model List<juezprueba.Models.Problema>
+
 @{
     ViewBag.Title = "Lista de Problemas";
-    var dificultadSeleccionada = Context.Request.Query["dificultad"].ToString();
 }
-@section ParticleBackground {
-    <script src="~/js/particleBackground.js"></script>
-}
-<style>
-    :root {
-        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-        --warning-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        --danger-gradient: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
-        --info-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
-        --card-shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.15);
-        --border-radius: 16px;
-        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
 
-    [data-bs-theme="dark"] {
-        --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
-        --card-shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.4);
-    }
-
-    .problems-container {
-        animation: fadeInUp 0.6s ease-out;
-    }
-
-    @@keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .main-card {
-        border: none;
-        border-radius: var(--border-radius);
-        box-shadow: var(--card-shadow);
-        overflow: hidden;
-        backdrop-filter: blur(10px);
-        transition: var(--transition);
-    }
-
-    .main-card:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--card-shadow-hover);
-    }
-
-    .gradient-header {
-        background: var(--primary-gradient);
-        padding: 2rem;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .gradient-header::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-        animation: shimmer 4s ease-in-out infinite;
-    }
-
-    @@keyframes shimmer {
-        0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate(180deg); }
-    }
-
-    .header-content {
-        position: relative;
-        z-index: 2;
-    }
-
-    .header-title {
-        font-weight: 700;
-        font-size: 1.5rem;
-        margin: 0;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .filter-section {
-        background: var(--bs-body-bg);
-        padding: 1.5rem;
-        border-bottom: 1px solid var(--bs-border-color);
-        backdrop-filter: blur(10px);
-    }
-
-    .filter-card {
-        background: linear-gradient(135deg, var(--bs-primary-bg-subtle) 0%, var(--bs-secondary-bg-subtle) 100%);
-        border: 1px solid var(--bs-border-color);
-        border-radius: 12px;
-        padding: 1.5rem;
-        transition: var(--transition);
-    }
-
-    .filter-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .modern-select {
-        border: 2px solid transparent;
-        border-radius: 10px;
-        padding: 8px 12px;
-        background: var(--bs-body-bg);
-        transition: var(--transition);
-        cursor: pointer;
-    }
-
-    .modern-select:focus {
-        border-color: var(--bs-primary);
-        box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.25);
-        transform: translateY(-1px);
-    }
-
-    .problems-table {
-        background: transparent;
-    }
-
-    .table-row {
-        transition: var(--transition);
-        border: none;
-    }
-
-    .table-row:hover {
-        background: var(--bs-primary-bg-subtle) !important;
-        transform: translateX(5px);
-        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .problem-title {
-        font-weight: 600;
-        font-size: 1.1rem;
-        color: var(--bs-emphasis-color);
-        transition: var(--transition);
-    }
-
-    .table-row:hover .problem-title {
-        color: var(--bs-primary);
-    }
-
-    .modern-badge {
-        padding: 8px 12px;
-        border-radius: 20px;
-        font-weight: 600;
-        font-size: 0.85rem;
-        border: none;
-        position: relative;
-        overflow: hidden;
-        transition: var(--transition);
-    }
-
-    .badge-points {
-        background: var(--success-gradient);
-        color: white;
-    }
-
-    .badge-easy {
-        background: var(--info-gradient);
-        color: white;
-    }
-
-    .badge-medium {
-        background: var(--warning-gradient);
-        color: white;
-    }
-
-    .badge-hard {
-        background: var(--danger-gradient);
-        color: white;
-    }
-
-    .modern-badge:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .action-buttons {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-    }
-
-    .btn-modern {
-        border-radius: 8px;
-        font-weight: 500;
-        font-size: 0.85rem;
-        padding: 6px 12px;
-        border: none;
-        transition: var(--transition);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btn-modern::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: width 0.4s, height 0.4s;
-    }
-
-    .btn-modern:hover::before {
-        width: 200px;
-        height: 200px;
-    }
-
-    .btn-modern:hover {
-        transform: translateY(-2px);
-    }
-
-    .btn-solve {
-        background: var(--success-gradient);
-        color: white;
-    }
-
-    .btn-solve:hover {
-        box-shadow: 0 6px 20px rgba(17, 153, 142, 0.4);
-    }
-
-    .btn-tests {
-        background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
-        color: white;
-    }
-
-    .btn-tests:hover {
-        box-shadow: 0 6px 20px rgba(116, 185, 255, 0.4);
-    }
-
-    .btn-details {
-        background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
-        color: white;
-    }
-
-    .btn-details:hover {
-        box-shadow: 0 6px 20px rgba(162, 155, 254, 0.4);
-    }
-
-    .btn-edit {
-        background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%);
-        color: white;
-    }
-
-    .btn-edit:hover {
-        box-shadow: 0 6px 20px rgba(253, 203, 110, 0.4);
-    }
-
-    .btn-delete {
-        background: var(--danger-gradient);
-        color: white;
-    }
-
-    .btn-delete:hover {
-        box-shadow: 0 6px 20px rgba(252, 70, 107, 0.4);
-    }
-
-    .btn-create {
-        background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
-        color: white;
-        border-radius: 10px;
-        padding: 10px 20px;
-        font-weight: 600;
-        transition: var(--transition);
-    }
-
-    .btn-create:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 184, 148, 0.3);
-    }
-
-    .empty-state {
-        background: linear-gradient(135deg, var(--bs-info-bg-subtle) 0%, var(--bs-primary-bg-subtle) 100%);
-        border: 2px dashed var(--bs-info);
-        border-radius: var(--border-radius);
-        padding: 3rem;
-        text-align: center;
-        animation: pulse 2s ease-in-out infinite;
-    }
-
-    @@keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.8; }
-    }
-
-    .empty-icon {
-        font-size: 4rem;
-        color: var(--bs-info);
-        margin-bottom: 1rem;
-        animation: bounce 2s ease-in-out infinite;
-    }
-
-    @@keyframes bounce {
-        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-        40% { transform: translateY(-10px); }
-        60% { transform: translateY(-5px); }
-    }
-
-    .stats-footer {
-        background: var(--bs-secondary-bg);
-        border-top: 1px solid var(--bs-border-color);
-        padding: 1rem 1.5rem;
-    }
-
-    .stats-text {
-        color: var(--bs-secondary);
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    /* Responsive design */
-    @@media (max-width: 768px) {
-        .action-buttons {
-            justify-content: center;
-        }
-        
-        .btn-modern {
-            font-size: 0.75rem;
-            padding: 4px 8px;
-        }
-        
-        .gradient-header {
-            padding: 1.5rem;
-        }
-        
-        .header-title {
-            font-size: 1.25rem;
-        }
-        
-        .filter-card {
-            padding: 1rem;
-        }
-    }
-
-    /* Loading animation */
-    .table-loading {
-        position: relative;
-    }
-
-    .table-loading::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, 
-            transparent, 
-            var(--bs-primary), 
-            transparent);
-        animation: loading 2s ease-in-out infinite;
-    }
-
-    @@keyframes loading {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
-    }
-</style>
-
-<div class="container-fluid py-4 problems-container">
-    <div class="card main-card">
-        <!-- Header con gradiente -->
-        <div class="gradient-header text-white">
-            <div class="header-content d-flex justify-content-between align-items-center flex-wrap gap-3">
-                <div>
-                    <h1 class="header-title">
-                        <i class="fas fa-puzzle-piece me-3"></i>
-                        Desafíos de Programación
-                    </h1>
-                    <p class="mb-0 opacity-75">Pon a prueba tus habilidades de programación</p>
-                </div>
+<div class="container-fluid py-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-purple text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="h4 mb-0"><i class="fas fa-list-check me-2"></i>Lista de Problemas</h2>
                 @if (User.IsInRole("Admin"))
                 {
-                    <a class="btn btn-create" asp-action="Create">
-                        <i class="fas fa-plus-circle me-2"></i>
-                        Crear Problema
+                    <a class="btn btn-light btn-sm" asp-action="Create">
+                        <i class="fas fa-plus-circle me-1"></i> Nuevo Problema
                     </a>
                 }
+
             </div>
         </div>
 
-        <!-- Sección de filtros -->
-        <div class="filter-section">
-            <form method="get" id="filterForm">
-                <div class="filter-card">
-                    <div class="row align-items-center g-3">
-                        <div class="col-auto">
-                            <label class="form-label mb-0 fw-bold" for="dificultad">
-                                <i class="fas fa-filter me-2 text-primary"></i>
-                                Filtrar por dificultad:
-                            </label>
-                        </div>
-                        <div class="col-auto">
-                            <select name="dificultad" id="dificultad" class="form-select modern-select" onchange="handleFilterChange()">
-                                <option value="">🎯 Todas las dificultades</option>
-                                <option value="Fácil" @@(dificultadSeleccionada == "Fácil" ? "selected" : "")>
-                                    🟢 Fácil
-                                </option>
-                                <option value="Media" @@(dificultadSeleccionada == "Media" ? "selected" : "")>
-                                    🟡 Media
-                                </option>
-                                <option value="Difícil" @@(dificultadSeleccionada == "Difícil" ? "selected" : "")>
-                                    🔴 Difícil
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-auto">
-                            <button type="button" class="btn btn-outline-secondary btn-modern" onclick="clearFilters()">
-                                <i class="fas fa-times me-1"></i>
-                                Limpiar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <!-- Contenido principal -->
-        <div class="card-body p-0">
+        <div class="card-body">
             @if (Model.Any())
             {
                 <div class="table-responsive">
-                    <table class="table problems-table table-hover mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th class="py-3 px-4">
-                                    <i class="fas fa-code me-2"></i>Problema
-                                </th>
-                                <th class="text-center py-3">
-                                    <i class="fas fa-star me-2"></i>Puntos
-                                </th>
-                                <th class="text-center py-3">
-                                    <i class="fas fa-chart-line me-2"></i>Dificultad
-                                </th>
-                                <th class="text-end py-3 px-4">
-                                    <i class="fas fa-cogs me-2"></i>Acciones
-                                </th>
-                            </tr>
-                        </thead>
+                    <table class="table table-hover">
                         <tbody>
                             @foreach (var problema in Model)
                             {
-                                <tr class="table-row">
-                                    <td class="py-4 px-4">
-                                        <div class="problem-title">
-                                            <i class="fas fa-terminal me-2 text-muted"></i>
-                                            @problema.Titulo
-                                        </div>
-                                    </td>
-                                    <td class="text-center py-4">
-                                        <span class="modern-badge badge-points">
-                                            <i class="fas fa-coins me-1"></i>
-                                            @problema.Puntos pts
-                                        </span>
-                                    </td>
-                                    <td class="text-center py-4">
-                                        <span class="modern-badge @(problema.Dificultad == "Fácil" ? "badge-easy" :
-                                                                   problema.Dificultad == "Media" ? "badge-medium" :
-                                                                   "badge-hard")">
-                                            @(problema.Dificultad == "Fácil" ? "🟢" :
-                                              problema.Dificultad == "Media" ? "🟡" : "🔴")
-                                            @problema.Dificultad
-                                        </span>
-                                    </td>
-                                    <td class="text-end py-4 px-4">
-                                        <div class="action-buttons">
-                                            <a class="btn btn-modern btn-solve" asp-action="Resolver" asp-route-id="@problema.Id" title="Resolver problema">
-                                                <i class="fas fa-play me-1"></i>Resolver
+                                <tr class="align-middle">
+                                    <td class="fw-bold fs-5">@problema.Titulo</td>
+                                    <td class="text-end">
+                                        <div class="btn-group" role="group">
+                                            <a class="btn btn-sm btn-success" asp-action="Resolver" asp-route-id="@problema.Id">
+                                                <i class="fas fa-code me-1"></i>Resolver
                                             </a>
                                             @if (User.IsInRole("Admin"))
                                             {
-                                                <a class="btn btn-modern btn-tests" 
-                                                   href="@Url.Action("CasosDePruebaPorProblema", "CasoDePrueba", new { id = problema.Id })"
-                                                   title="Ver casos de prueba">
+                                                <a class="btn btn-sm btn-sky-blue"
+                                                href="@Url.Action("CasosDePruebaPorProblema", "CasoDePrueba", new { id = problema.Id })">
                                                     <i class="fas fa-vial me-1"></i>Pruebas
                                                 </a>
-                                                <a class="btn btn-modern btn-details" asp-action="Details" asp-route-id="@problema.Id" title="Ver detalles">
-                                                    <i class="fas fa-eye me-1"></i>Ver
+                                                <a class="btn btn-sm btn-indigo" asp-action="Details" asp-route-id="@problema.Id">
+                                                    <i class="fas fa-eye me-1"></i>Detalles
                                                 </a>
-                                                <a class="btn btn-modern btn-edit" asp-action="Edit" asp-route-id="@problema.Id" title="Editar problema">
+                                                <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@problema.Id">
                                                     <i class="fas fa-edit me-1"></i>Editar
                                                 </a>
-                                                <a class="btn btn-modern btn-delete" asp-action="Delete" asp-route-id="@problema.Id" title="Eliminar problema" onclick="return confirmDelete('@problema.Titulo')">
+                                                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@problema.Id">
                                                     <i class="fas fa-trash-alt me-1"></i>Eliminar
                                                 </a>
                                             }
@@ -511,156 +60,105 @@
             }
             else
             {
-                <div class="p-5">
-                    <div class="empty-state">
-                        <div class="empty-icon">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <h3 class="text-primary mb-3">No se encontraron problemas</h3>
-                        <p class="text-muted mb-4">
-                            @if (string.IsNullOrEmpty(dificultadSeleccionada))
-                            {
-                                <text>Actualmente no hay problemas registrados en la plataforma.</text>
-                            }
-                            else
-                            {
-                                <text>No hay problemas de dificultad "<strong>@dificultadSeleccionada</strong>" disponibles.</text>
-                            }
-                        </p>
-                        @if (!string.IsNullOrEmpty(dificultadSeleccionada))
-                        {
-                            <button type="button" class="btn btn-primary btn-modern" onclick="clearFilters()">
-                                <i class="fas fa-refresh me-2"></i>
-                                Ver todos los problemas
-                            </button>
-                        }
-                    </div>
+                <div class="alert alert-purple text-center">
+                    <i class="fas fa-info-circle fa-2x mb-3"></i>
+                    <h4 class="alert-heading">No hay problemas registrados</h4>
+                    <p>Comienza creando tu primer problema haciendo clic en el botón "Nuevo Problema".</p>
                 </div>
             }
         </div>
 
-        <!-- Footer con estadísticas -->
         @if (Model.Any())
         {
-            <div class="stats-footer">
-                <div class="stats-text">
-                    <i class="fas fa-chart-bar text-primary"></i>
-                    <span>Mostrando <strong>@Model.Count</strong> problema@(Model.Count != 1 ? "s" : "") en total</span>
-                    @if (!string.IsNullOrEmpty(dificultadSeleccionada))
-                    {
-                        <span class="ms-2">
-                            <i class="fas fa-filter text-muted"></i>
-                            Filtrado por: <strong>@dificultadSeleccionada</strong>
-                        </span>
-                    }
-                </div>
+            <div class="card-footer bg-body-secondary">
+                <small class="text-muted">Mostrando @Model.Count problema(s) en total</small>
             </div>
         }
     </div>
 </div>
 
-<script>
-    // Manejo del filtro con animación
-    function handleFilterChange() {
-        const table = document.querySelector('.problems-table');
-        const form = document.getElementById('filterForm');
-        
-        if (table) {
-            table.classList.add('table-loading');
+@section Styles {
+    <style>
+        :root {
+            /* Colores principales */
+            --bs-purple: #6f42c1;
+            --bs-indigo: #6610f2;
+            --bs-sky-blue: #0dcaf0;
+            /* RGB para cálculos */
+            --bs-purple-rgb: 111, 66, 193;
+            --bs-indigo-rgb: 102, 16, 242;
+            --bs-sky-blue-rgb: 13, 202, 240;
         }
-        
-        // Pequeño delay para mostrar la animación
-        setTimeout(() => {
-            form.submit();
-        }, 500);
-    }
 
-    // Limpiar filtros
-    function clearFilters() {
-        const select = document.getElementById('dificultad');
-        select.value = '';
-        handleFilterChange();
-    }
+        /* Clases de color */
+        .bg-purple {
+            background-color: var(--bs-purple) !important;
+        }
 
-    // Confirmación de eliminación
-    function confirmDelete(titulo) {
-        return confirm(`¿Estás seguro de que deseas eliminar el problema "${titulo}"?\n\nEsta acción no se puede deshacer.`);
-    }
+        .btn-indigo {
+            --bs-btn-color: #fff;
+            --bs-btn-bg: var(--bs-indigo);
+            --bs-btn-border-color: var(--bs-indigo);
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: #5a0dd9;
+            --bs-btn-hover-border-color: #550dcf;
+            --bs-btn-focus-shadow-rgb: var(--bs-indigo-rgb);
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: #550dcf;
+            --bs-btn-active-border-color: #500cc4;
+        }
 
-    // Animaciones al cargar la página
-    document.addEventListener('DOMContentLoaded', function() {
-        // Animar filas de la tabla
-        const rows = document.querySelectorAll('.table-row');
-        rows.forEach((row, index) => {
-            row.style.opacity = '0';
-            row.style.transform = 'translateX(-20px)';
-            
-            setTimeout(() => {
-                row.style.transition = 'all 0.6s ease';
-                row.style.opacity = '1';
-                row.style.transform = 'translateX(0)';
-            }, index * 100);
-        });
+        .btn-sky-blue {
+            --bs-btn-color: #000;
+            --bs-btn-bg: var(--bs-sky-blue);
+            --bs-btn-border-color: var(--bs-sky-blue);
+            --bs-btn-hover-color: #000;
+            --bs-btn-hover-bg: #3dd5f3;
+            --bs-btn-hover-border-color: #25d1f2;
+            --bs-btn-focus-shadow-rgb: var(--bs-sky-blue-rgb);
+            --bs-btn-active-color: #000;
+            --bs-btn-active-bg: #25d1f2;
+            --bs-btn-active-border-color: #14ccf0;
+        }
 
-        // Tooltip para botones
-        const buttons = document.querySelectorAll('[title]');
-        buttons.forEach(button => {
-            button.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px) scale(1.05)';
-            });
-            
-            button.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+        .alert-purple {
+            --bs-alert-color: var(--bs-purple);
+            --bs-alert-bg: rgba(var(--bs-purple-rgb), 0.1);
+            --bs-alert-border-color: rgba(var(--bs-purple-rgb), 0.3);
+        }
 
-        // Efecto de hover mejorado para las filas
-        const tableRows = document.querySelectorAll('.table-row');
-        tableRows.forEach(row => {
-            row.addEventListener('mouseenter', function() {
-                this.style.background = 'var(--bs-primary-bg-subtle)';
-                this.style.borderLeft = '4px solid var(--bs-primary)';
-            });
-            
-            row.addEventListener('mouseleave', function() {
-                this.style.background = '';
-                this.style.borderLeft = '';
-            });
-        });
-    });
+        /* Modo oscuro */
+        [data-bs-theme="dark"] {
+            --bs-purple: #7d54d1;
+            --bs-indigo: #7b2ff7;
+            --bs-sky-blue: #0dcaf0; /* Se mantiene igual para mejor visibilidad */
+        }
 
-    // Efecto de carga para botones
-    document.querySelectorAll('.btn-modern').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            if (!this.classList.contains('btn-delete')) {
-                const ripple = document.createElement('span');
-                ripple.style.position = 'absolute';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.6)';
-                ripple.style.transform = 'scale(0)';
-                ripple.style.animation = 'ripple 0.6s linear';
-                ripple.style.left = '50%';
-                ripple.style.top = '50%';
-                ripple.style.width = '20px';
-                ripple.style.height = '20px';
-                ripple.style.marginLeft = '-10px';
-                ripple.style.marginTop = '-10px';
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
+            [data-bs-theme="dark"] .card {
+                background-color: var(--bs-dark-bg-subtle);
+                border-color: var(--bs-border-color);
             }
-        });
-    });
-</script>
 
-<style>
-    @@keyframes ripple {
-        to {
-            transform: scale(4);
-            opacity: 0;
+            [data-bs-theme="dark"] .table {
+                --bs-table-bg: var(--bs-dark-bg-subtle);
+                --bs-table-striped-bg: var(--bs-dark-bg-subtle);
+                --bs-table-hover-bg: var(--bs-dark-border-color);
+                color: var(--bs-body-color);
+            }
+
+            [data-bs-theme="dark"] .table-hover > tbody > tr:hover {
+                --bs-table-accent-bg: var(--bs-dark-border-color);
+            }
+
+        /* Estilo de botones */
+        .btn-group .btn {
+            margin-right: 0.3rem;
+            border-radius: 0.25rem !important;
+            min-width: 100px; /* Ancho mínimo para consistencia */
         }
-    }
-</style>
+
+            .btn-group .btn:last-child {
+                margin-right: 0;
+            }
+    </style>
+}

@@ -16,19 +16,16 @@ namespace juezprueba.Controllers
             _judge0Service = judge0Service;
             _context = context;
         }
-        public async Task<IActionResult> Index(string dificultad)
+
+        // 1. Mostrar lista de problemas
+        public async Task<IActionResult> Index()
         {
-            var problemas = _context.Problemas.AsQueryable();
+            var problemas = await _context.Problemas
+                .Include(p => p.CasosDePrueba)
+                .ToListAsync();
 
-            if (!string.IsNullOrEmpty(dificultad))
-            {
-                problemas = problemas.Where(p => p.Dificultad == dificultad);
-            }
-
-            return View(await problemas.ToListAsync());
+            return View(problemas);
         }
-
-
 
         // 2. Detalles
         public async Task<IActionResult> Details(int id)
@@ -144,7 +141,6 @@ namespace juezprueba.Controllers
 
             var resultados = new List<string>();
 
-            bool todosCorrectos = true;
             foreach (var caso in problema.CasosDePrueba)
             {
                 var resultadoJson = await _judge0Service.EnviarCodigoAsync(sourceCode, languageId, caso.Input);
@@ -152,43 +148,10 @@ namespace juezprueba.Controllers
 
                 bool esCorrecto = salida.Trim() == caso.OutputEsperado.Trim();
                 resultados.Add($"Caso {caso.Id}: {(esCorrecto ? "✅ Correcto" : $"❌ Incorrecto (Esperado: '{caso.OutputEsperado}', Obtenido: '{salida}')")}");
-
-                if (!esCorrecto)
-                    todosCorrectos = false;
             }
 
             ViewBag.Resultados = resultados;
-
-            if (todosCorrectos)
-            {
-                // Obtener id del usuario actual
-                var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-
-                if (!string.IsNullOrEmpty(userId))
-                {
-                    var ahora = DateTime.UtcNow;
-                    var inicioMes = new DateTime(ahora.Year, ahora.Month, 1);
-
-                    // Verificar si ya resolvió este problema este mes
-                    bool yaResuelto = await _context.ProblemasResueltos
-                        .AnyAsync(pr => pr.UsuarioId == userId && pr.ProblemaId == id && pr.FechaResolucion >= inicioMes);
-
-                    if (!yaResuelto)
-                    {
-                        var nuevoRegistro = new ProblemaResuelto
-                        {
-                            UsuarioId = userId,
-                            ProblemaId = id,
-                            FechaResolucion = ahora
-                        };
-                        _context.ProblemasResueltos.Add(nuevoRegistro);
-                        await _context.SaveChangesAsync();
-                    }
-                }
-            }
-
             return View(problema);
         }
-
     }
 }

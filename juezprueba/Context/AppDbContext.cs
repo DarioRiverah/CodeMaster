@@ -10,9 +10,6 @@ namespace juezprueba.Context
 
         public DbSet<Problema> Problemas { get; set; }
         public DbSet<CasoDePrueba> CasosDePrueba { get; set; }
-        public DbSet<PerfilUsuario> PerfilesUsuario { get; set; }
-        public DbSet<ProblemaResuelto> ProblemasResueltos { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,16 +20,6 @@ namespace juezprueba.Context
                 .WithOne(c => c.Problema)
                 .HasForeignKey(c => c.ProblemaId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<ProblemaResuelto>()
-            .HasOne(pr => pr.Usuario)
-            .WithMany()  // Si quieres, luego puedes agregar colección en ApplicationUser
-            .HasForeignKey(pr => pr.UsuarioId);
-
-            modelBuilder.Entity<ProblemaResuelto>()
-                .HasOne(pr => pr.Problema)
-                .WithMany()
-                .HasForeignKey(pr => pr.ProblemaId);
         }
     }
 }
