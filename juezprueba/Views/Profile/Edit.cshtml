@@ -303,8 +303,51 @@
     }
 
     }
-</style>
 
+    /* Estilos adicionales para el enlace de cambiar contraseña */
+    .bg-light-hover {
+        background-color: var(--bs-light);
+        transition: all 0.3s ease;
+    }
+
+        .bg-light-hover:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+    .text-primary {
+        color: var(--primary-color) !important;
+    }
+
+    /* Estilo para el enlace de cambiar contraseña */
+    .text-primary {
+        transition: all 0.3s ease;
+    }
+
+        .text-primary:hover {
+            color: var(--primary-hover) !important;
+            transform: translateY(-1px);
+        }
+
+    /* Efecto para la opción 1 */
+    .d-inline-flex:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+
+    /* Efecto para la opción 2 */
+    .small:hover {
+        font-weight: 500;
+    }
+
+</style>
+@if (ViewBag.Racha != null)
+{
+    <div class="alert alert-info mt-3">
+        🔥 ¡Llevas <strong>@ViewBag.Racha</strong> día(s) seguidos resolviendo problemas!
+    </div>
+}
 <div class="container-fluid py-4">
     <div class="row justify-content-center">
         <div class="col-xl-8 col-lg-10">
@@ -317,6 +360,13 @@
                     </h1>
                     <p class="mb-0 opacity-75">Personaliza tu información personal</p>
                 </div>
+                <div class="card-body p-4 position-relative">
+                    <div class="position-absolute top-0 end-0 mt-3 me-3">
+                        <a asp-controller="Auth" asp-action="ChangePassword"
+                           class="text-decoration-none text-primary small">
+                            <i class="fas fa-key me-1"></i>Cambiar contraseña
+                        </a>
+                    </div>
 
                 <div class="card-body p-4">
                     <!-- Mensaje de éxito -->

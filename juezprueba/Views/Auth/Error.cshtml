@@ -3,10 +3,593 @@
 }
 
 <div class="container mt-5">
-    <div class="alert alert-danger text-center">
-        <h4 class="alert-heading">¡Ha ocurrido un error!</h4>
-        <p>No se pudo completar la operación. Es posible que el enlace haya expirado o sea inválido.</p>
-        <hr>
-        <p class="mb-0">Si el problema persiste, por favor contacta al soporte técnico o intenta registrarte nuevamente.</p>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 error-card">
+                <div class="card-body p-5 text-center">
+                    <!-- Icono de error animado -->
+                    <div class="error-animation mb-4">
+                        <div class="error-icon-container">
+                            <div class="error-circle">
+                                <div class="error-x">
+                                    <div class="error-line error-line-1"></div>
+                                    <div class="error-line error-line-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Título principal -->
+                    <h2 class="text-danger mb-3 fw-bold">
+                        ¡Oops! Algo salió mal
+                    </h2>
+
+                    <h5 class="text-muted mb-4">
+                        No pudimos completar la operación
+                    </h5>
+
+                    <!-- Mensaje de error principal -->
+                    <div class="alert alert-danger border-danger bg-danger-subtle mb-4">
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <i class="fas fa-exclamation-triangle text-danger me-2" style="font-size: 1.5rem;"></i>
+                            <strong class="text-danger">Error de verificación</strong>
+                        </div>
+                        <p class="mb-3">
+                            No se pudo completar la operación solicitada. Esto puede deberse a varias razones:
+                        </p>
+                        <ul class="text-start mb-0">
+                            <li class="mb-1">El enlace puede haber <strong>expirado</strong></li>
+                            <li class="mb-1">El enlace puede ser <strong>inválido</strong> o estar corrupto</li>
+                            <li class="mb-1">La operación ya fue <strong>completada anteriormente</strong></li>
+                            <li>Puede haber un <strong>problema temporal</strong> del servidor</li>
+                        </ul>
+                    </div>
+
+                    <!-- Opciones de solución -->
+                    <div class="card bg-light border-0 mb-4">
+                        <div class="card-body p-4">
+                            <h6 class="text-primary mb-3">
+                                <i class="fas fa-lightbulb me-2"></i>
+                                ¿Qué puedes hacer?
+                            </h6>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="solution-item">
+                                        <div class="d-flex align-items-start">
+                                            <div class="solution-number">1</div>
+                                            <div class="solution-content">
+                                                <strong>Verificar el enlace</strong>
+                                                <p class="small text-muted mb-0">
+                                                    Asegúrate de usar el enlace más reciente de tu correo
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="solution-item">
+                                        <div class="d-flex align-items-start">
+                                            <div class="solution-number">2</div>
+                                            <div class="solution-content">
+                                                <strong>Intentar más tarde</strong>
+                                                <p class="small text-muted mb-0">
+                                                    Espera unos minutos y vuelve a intentar
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="solution-item">
+                                        <div class="d-flex align-items-start">
+                                            <div class="solution-number">3</div>
+                                            <div class="solution-content">
+                                                <strong>Solicitar nuevo enlace</strong>
+                                                <p class="small text-muted mb-0">
+                                                    Genera un nuevo enlace de verificación
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="solution-item">
+                                        <div class="d-flex align-items-start">
+                                            <div class="solution-number">4</div>
+                                            <div class="solution-content">
+                                                <strong>Contactar soporte</strong>
+                                                <p class="small text-muted mb-0">
+                                                    Nuestro equipo te ayudará a resolver el problema
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="action-buttons">
+                        <div class="d-grid gap-2 mb-3">
+                            <button type="button"
+                                    class="btn btn-primary btn-lg"
+                                    onclick="requestNewLink()">
+                                <i class="fas fa-redo me-2"></i>
+                                Solicitar nuevo enlace
+                            </button>
+                        </div>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-md-6">
+                                <a href="@Url.Action("Register", "Auth")"
+                                   class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-user-plus me-2"></i>
+                                    Registrarse nuevamente
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="@Url.Action("Login", "Auth")"
+                                   class="btn btn-outline-secondary w-100">
+                                    <i class="fas fa-sign-in-alt me-2"></i>
+                                    Iniciar sesión
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <button type="button"
+                                        class="btn btn-outline-info btn-sm w-100"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#helpModal">
+                                    <i class="fas fa-question-circle me-2"></i>
+                                    Centro de ayuda
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="mailto:soporte@ejemplo.com"
+                                   class="btn btn-outline-warning btn-sm w-100">
+                                    <i class="fas fa-envelope me-2"></i>
+                                    Contactar soporte
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información adicional -->
+                    <div class="additional-info mt-4 pt-3 border-top">
+                        <p class="text-muted mb-2">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>¿Necesitas ayuda inmediata?</strong>
+                        </p>
+                        <small class="text-muted">
+                            Nuestro equipo de soporte está disponible 24/7 para ayudarte con cualquier problema.
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Footer con información técnica -->
+                <div class="card-footer bg-light border-0 text-center py-3">
+                    <details class="error-details">
+                        <summary class="text-muted" style="cursor: pointer;">
+                            <small>
+                                <i class="fas fa-code me-1"></i>
+                                Ver detalles técnicos
+                            </small>
+                        </summary>
+                        <div class="mt-2 p-2 bg-white rounded border">
+                            <small class="text-muted">
+                                <strong>Código de error:</strong> @(ViewBag.ErrorCode ?? "ERR_VERIFICATION_FAILED")<br>
+                                <strong>Timestamp:</strong> @DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")<br>
+                                <strong>ID de sesión:</strong> @(ViewBag.SessionId ?? Guid.NewGuid().ToString("N")[..8])
+                            </small>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Modal de centro de ayuda -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="helpModalLabel">
+                    <i class="fas fa-life-ring me-2"></i>
+                    Centro de Ayuda - Errores de Verificación
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="accordion" id="helpAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fas fa-clock me-2 text-warning"></i>
+                                Mi enlace ha expirado
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show"
+                             aria-labelledby="headingOne" data-bs-parent="#helpAccordion">
+                            <div class="accordion-body">
+                                <p>Los enlaces de verificación tienen una duración limitada por seguridad:</p>
+                                <ul>
+                                    <li><strong>Enlaces de confirmación de correo:</strong> 24 horas</li>
+                                    <li><strong>Enlaces de recuperación de contraseña:</strong> 1 hora</li>
+                                    <li><strong>Enlaces de invitación:</strong> 7 días</li>
+                                </ul>
+                                <p><strong>Solución:</strong> Solicita un nuevo enlace usando el botón "Solicitar nuevo enlace".</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="fas fa-link me-2 text-info"></i>
+                                El enlace no funciona correctamente
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse"
+                             aria-labelledby="headingTwo" data-bs-parent="#helpAccordion">
+                            <div class="accordion-body">
+                                <p>Si el enlace no funciona, verifica lo siguiente:</p>
+                                <ul>
+                                    <li>Copia y pega el enlace completo en tu navegador</li>
+                                    <li>Asegúrate de no tener espacios extra al inicio o final</li>
+                                    <li>Intenta usar un navegador diferente</li>
+                                    <li>Desactiva temporalmente bloqueadores de anuncios</li>
+                                    <li>Verifica que tengas conexión a internet estable</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <i class="fas fa-shield-alt me-2 text-success"></i>
+                                ¿Por qué existen estos errores?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse"
+                             aria-labelledby="headingThree" data-bs-parent="#helpAccordion">
+                            <div class="accordion-body">
+                                <p>Los enlaces con tiempo limitado y validaciones estrictas existen por tu seguridad:</p>
+                                <ul>
+                                    <li><strong>Previenen ataques maliciosos</strong> - Enlaces antiguos no pueden ser usados por terceros</li>
+                                    <li><strong>Protegen tu privacidad</strong> - Evitan accesos no autorizados a tu cuenta</li>
+                                    <li><strong>Mantienen la integridad</strong> - Aseguran que solo enlaces válidos sean procesados</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="requestNewLink(); $('#helpModal').modal('hide');">
+                    <i class="fas fa-redo me-2"></i>
+                    Solicitar nuevo enlace
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .error-card {
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    /* Animación del error X */
+    .error-animation {
+        margin: 0 auto;
+        width: 100px;
+        height: 100px;
+    }
+
+    .error-icon-container {
+        width: 100px;
+        height: 100px;
+        position: relative;
+    }
+
+    .error-circle {
+        width: 100px;
+        height: 100px;
+        border: 4px solid #dc3545;
+        border-radius: 50%;
+        position: relative;
+        animation: errorCircle 0.5s ease-in-out;
+    }
+
+    .error-x {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+    }
+
+    .error-line {
+        position: absolute;
+        width: 40px;
+        height: 4px;
+        background-color: #dc3545;
+        border-radius: 2px;
+        top: 50%;
+        left: 50%;
+        transform-origin: center;
+    }
+
+    .error-line-1 {
+        transform: translate(-50%, -50%) rotate(45deg);
+        animation: drawLine1 0.3s ease-in-out 0.5s both;
+    }
+
+    .error-line-2 {
+        transform: translate(-50%, -50%) rotate(-45deg);
+        animation: drawLine2 0.3s ease-in-out 0.8s both;
+    }
+
+    @@keyframes errorCircle {
+        0%
+
+    {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    }
+
+    @@keyframes drawLine1 {
+        0%
+
+    {
+        width: 0;
+        opacity: 0;
+    }
+
+    100% {
+        width: 40px;
+        opacity: 1;
+    }
+
+    }
+
+    @@keyframes drawLine2 {
+        0%
+
+    {
+        width: 0;
+        opacity: 0;
+    }
+
+    100% {
+        width: 40px;
+        opacity: 1;
+    }
+
+    }
+
+    /* Estilos para las soluciones */
+    .solution-item {
+        height: 100%;
+        padding: 0.5rem;
+        border-radius: 8px;
+        transition: background-color 0.2s ease;
+    }
+
+        .solution-item:hover {
+            background-color: rgba(13, 110, 253, 0.05);
+        }
+
+    .solution-number {
+        width: 30px;
+        height: 30px;
+        background: linear-gradient(45deg, #0d6efd, #6610f2);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.9rem;
+        margin-right: 1rem;
+        flex-shrink: 0;
+    }
+
+    .solution-content {
+        flex-grow: 1;
+    }
+
+    /* Efectos de botones */
+    .btn:hover {
+        transform: translateY(-1px);
+        transition: transform 0.2s ease;
+    }
+
+    /* Detalles técnicos */
+    .error-details summary {
+        list-style: none;
+    }
+
+        .error-details summary::-webkit-details-marker {
+            display: none;
+        }
+
+    .error-details[open] summary {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Responsive */
+    @@media (max-width: 576px) {
+        .card-body
+
+    {
+        padding: 2rem 1.5rem !important;
+    }
+
+    .error-animation {
+        width: 80px;
+        height: 80px;
+    }
+
+    .error-icon-container,
+    .error-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .solution-number {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+
+    }
+
+    /* Animación de shake para el botón principal */
+    .shake {
+        animation: shake 0.5s ease-in-out;
+    }
+
+    @@keyframes shake {
+        0%, 100%
+
+    {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+
+    }
+</style>
+
+<script>
+    let requestInProgress = false;
+
+    function requestNewLink() {
+        if (requestInProgress) return;
+
+        const btn = event.target.closest('button');
+        const originalText = btn.innerHTML;
+
+        requestInProgress = true;
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Procesando...';
+
+        // Simular llamada AJAX - reemplaza con tu lógica real
+        setTimeout(() => {
+            // Simular respuesta exitosa
+            showNotification('¡Nuevo enlace enviado!', 'success', 'Revisa tu correo electrónico para el nuevo enlace de verificación.');
+
+            // Resetear botón
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+            requestInProgress = false;
+
+            // Opcional: redirigir a página de confirmación
+            setTimeout(() => {
+                window.location.href = '@Url.Action("EmailConfirmationSent", "Auth")';
+            }, 2000);
+
+        }, 2000);
+    }
+
+    function showNotification(title, type = 'info', message = '') {
+        // Crear notificación toast
+        const toastContainer = document.createElement('div');
+        toastContainer.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 350px;
+        `;
+
+        const alertClass = type === 'success' ? 'alert-success' : type === 'error' ? 'alert-danger' : 'alert-info';
+        const iconClass = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-triangle' : 'fa-info-circle';
+
+        toastContainer.innerHTML = `
+            <div class="alert ${alertClass} alert-dismissible fade show shadow-lg" role="alert">
+                <div class="d-flex align-items-start">
+                    <i class="fas ${iconClass} me-2 mt-1"></i>
+                    <div>
+                        <strong>${title}</strong>
+                        ${message ? `<br><small>${message}</small>` : ''}
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        `;
+
+        document.body.appendChild(toastContainer);
+
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            if (toastContainer.parentNode) {
+                toastContainer.remove();
+            }
+        }, 5000);
+    }
+
+    // Función para copiar información técnica
+    function copyErrorInfo() {
+        const errorCode = '@(ViewBag.ErrorCode ?? "ERR_VERIFICATION_FAILED")';
+        const timestamp = '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")';
+        const sessionId = '@(ViewBag.SessionId ?? Guid.NewGuid().ToString("N")[..8])';
+
+        const errorInfo = `Código de error: ${errorCode}\nTimestamp: ${timestamp}\nID de sesión: ${sessionId}`;
+
+        navigator.clipboard.writeText(errorInfo).then(() => {
+            showNotification('Información copiada', 'success', 'Los detalles técnicos han sido copiados al portapapeles.');
+        });
+    }
+
+    // Detectar si es un error específico por parámetros URL
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorType = urlParams.get('error');
+
+        if (errorType === 'expired') {
+            showNotification('Enlace expirado', 'error', 'El enlace que intentaste usar ha expirado.');
+        } else if (errorType === 'invalid') {
+            showNotification('Enlace inválido', 'error', 'El enlace parece estar corrupto o ser inválido.');
+        } else if (errorType === 'used') {
+            showNotification('Enlace ya usado', 'error', 'Este enlace ya fue utilizado anteriormente.');
+        }
+    });
+
+    // Agregar evento de click a los detalles técnicos para copiar
+    document.addEventListener('DOMContentLoaded', function() {
+        const errorDetails = document.querySelector('.error-details div');
+        if (errorDetails) {
+            errorDetails.style.cursor = 'pointer';
+            errorDetails.title = 'Click para copiar información técnica';
+            errorDetails.addEventListener('click', copyErrorInfo);
+        }
+    });
+</script>

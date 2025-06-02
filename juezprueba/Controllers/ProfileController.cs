@@ -98,7 +98,7 @@ namespace juezprueba.Controllers
                 if (perfil.Id == 0) _context.Add(perfil);
                 await _context.SaveChangesAsync();
 
-                // Actualizar claims (incluyendo nombre y apellido)
+                // Actualizar claims
                 await UpdateUserClaims(user, perfil.ImagenPerfilUrl);
 
                 await transaction.CommitAsync();

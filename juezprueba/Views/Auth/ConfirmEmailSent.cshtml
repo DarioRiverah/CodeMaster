@@ -1,18 +1,176 @@
 ﻿@{
     ViewData["Title"] = "Correo de Confirmación Enviado";
 }
+<style>
+    /* Contenedor principal que ocupa toda la altura disponible */
+    .main-wrapper {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+        position: relative;
+    }
 
-<div class="container mt-5">
-    <div class="alert alert-info text-center">
-        <h4 class="alert-heading">¡Revisa tu correo electrónico!</h4>
-        <p>
+    /* Alternativa usando CSS Grid para centrado perfecto */
+    .grid-wrapper {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 2rem 0;
+    }
+
+    .container-sent {
+        max-width: 500px;
+        margin: 0 auto; /* Cambiado de 3rem auto a 0 auto */
+        padding: 3rem 2rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(var(--bs-body-color-rgb), 0.1);
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        text-align: center;
+        position: relative;
+        z-index: 10;
+        width: 100%;
+    }
+
+    .email-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        background: rgba(59, 130, 246, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+        .email-icon svg {
+            width: 40px;
+            height: 40px;
+            color: #3b82f6;
+        }
+
+    .title-sent {
+        color: var(--bs-heading-color);
+        font-weight: 700;
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .message-sent {
+        color: var(--bs-secondary-color);
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--bs-border-color), transparent);
+        margin: 1.5rem 0;
+    }
+
+    .resend-link {
+        display: inline-block;
+        margin-top: 1rem;
+        color: #3b82f6;
+        font-weight: 600;
+        text-decoration: none;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+        .resend-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+
+        .resend-link:hover {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+            .resend-link:hover::after {
+                width: 100%;
+            }
+
+    /* Animaciones */
+    @@keyframes fadeInUp {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    /* Responsive */
+    @@media (max-width: 640px) {
+        .main-wrapper, .grid-wrapper
+
+    {
+        padding: 1rem 0;
+    }
+
+    .container-sent {
+        margin: 0 1rem;
+        padding: 2rem 1.5rem;
+        max-width: none;
+    }
+
+    .title-sent {
+        font-size: 1.5rem;
+    }
+
+    .message-sent {
+        font-size: 1rem;
+    }
+
+    }
+
+    /* Asegurar que el body y html ocupen toda la altura */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+@section ParticleBackground {
+    <script src="~/js/particleBackground.js"></script>
+}
+
+<!-- Opción 1: Usando Flexbox (Recomendado) -->
+<div class="main-wrapper">
+    <div class="container-sent">
+        <div class="email-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+        </div>
+        <h4 class="title-sent">¡Revisa tu correo electrónico!</h4>
+        <p class="message-sent">
             Hemos enviado un enlace de confirmación a tu dirección de correo electrónico.
             Por favor, verifica tu bandeja de entrada y sigue las instrucciones para activar tu cuenta.
         </p>
-        <hr>
-        <p class="mb-0">
+        <div class="divider"></div>
+        <p class="text-muted">
             ¿No recibiste el correo de confirmación?
-            <a asp-action="ResendEmailConfirmation" asp-controller="Auth">Reenviar correo aquí</a>.
+            <a class="resend-link" asp-action="ResendEmailConfirmation" asp-controller="Auth">Reenviar correo aquí</a>.
         </p>
     </div>
 </div>

@@ -6,13 +6,26 @@ namespace juezprueba.Services
     public class EmailSender : IEmailSender
     {
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _env;
 
-        public EmailSender(IConfiguration configuration)
+        public EmailSender(IConfiguration configuration, IWebHostEnvironment env)
         {
             _configuration = configuration;
+            _env = env;
         }
 
-        public Task SendEmailAsync(string email, string subject, string message)
+        public async Task SendEmailAsync(string email, string subject, string message)
+        {
+            await SendEmailWithTemplateAsync(email, subject, "default", new
+            {
+                Title = subject,
+                Content = message,
+                Year = DateTime.Now.Year,
+                AppName = "CodeMaster"
+            });
+        }
+
+        public async Task SendEmailWithTemplateAsync(string email, string subject, string templateName, object model)
         {
             var smtpSettings = _configuration.GetSection("SmtpSettings");
 
@@ -24,15 +37,28 @@ namespace juezprueba.Services
 
             var mailMessage = new MailMessage
             {
-                From = new MailAddress(smtpSettings["UserName"]),
+                From = new MailAddress(smtpSettings["UserName"], "CodeMaster"),
                 Subject = subject,
-                Body = message,
+                Body = await GetEmailTemplate(templateName, model),
                 IsBodyHtml = true
             };
 
             mailMessage.To.Add(email);
 
-            return client.SendMailAsync(mailMessage);
+            await client.SendMailAsync(mailMessage);
+        }
+
+        private async Task<string> GetEmailTemplate(string templateName, object model)
+        {
+            var templatePath = Path.Combine(_env.WebRootPath, "templates", $"{templateName}.html");
+            var templateContent = await File.ReadAllTextAsync(templatePath);
+
+            foreach (var prop in model.GetType().GetProperties())
+            {
+                templateContent = templateContent.Replace($"{{{{{prop.Name}}}}}", prop.GetValue(model)?.ToString());
+            }
+
+            return templateContent;
         }
     }
 }

@@ -374,3 +374,4 @@ C:\Users\Dario Rivera\Desktop\Desarrollo\CodeMaster\juezprueba\bin\Debug\net8.0\
 C:\Users\Dario Rivera\Desktop\Desarrollo\CodeMaster\juezprueba\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\Dario Rivera\Desktop\Desarrollo\CodeMaster\juezprueba\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Dario Rivera\Desktop\Desarrollo\CodeMaster\juezprueba\obj\Debug\net8.0\juezprueba.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Dario Rivera\Desktop\Desarrollo\CodeMaster\juezprueba\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll

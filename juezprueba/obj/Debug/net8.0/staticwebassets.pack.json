@@ -181,12 +181,32 @@
       "PackagePath": "staticwebassets\\juezprueba.rcuv1suupa.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\animatedBackground.css",
+      "PackagePath": "staticwebassets\\css\\animatedBackground.css"
+    },
+    {
+      "Id": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\frecuentes.css",
+      "PackagePath": "staticwebassets\\css\\frecuentes.css"
+    },
+    {
+      "Id": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\indexHome.css",
+      "PackagePath": "staticwebassets\\css\\indexHome.css"
+    },
+    {
+      "Id": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\nosotros.css",
+      "PackagePath": "staticwebassets\\css\\nosotros.css"
+    },
+    {
       "Id": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\js\\particleBackground.js",
+      "PackagePath": "staticwebassets\\js\\particleBackground.js"
     },
     {
       "Id": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\js\\site.js",
@@ -419,6 +439,18 @@
     {
       "Id": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\templates\\default.html",
+      "PackagePath": "staticwebassets\\templates\\default.html"
+    },
+    {
+      "Id": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\templates\\email-confirmation.html",
+      "PackagePath": "staticwebassets\\templates\\email-confirmation.html"
+    },
+    {
+      "Id": "C:\\Users\\Dario Rivera\\Desktop\\Desarrollo\\CodeMaster\\juezprueba\\wwwroot\\templates\\password-reset.html",
+      "PackagePath": "staticwebassets\\templates\\password-reset.html"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.juezprueba.props",

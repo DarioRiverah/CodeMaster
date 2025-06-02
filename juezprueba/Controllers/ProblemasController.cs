@@ -17,14 +17,30 @@ namespace juezprueba.Controllers
             _context = context;
         }
 
-        // 1. Mostrar lista de problemas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string dificultad)
         {
-            var problemas = await _context.Problemas
-                .Include(p => p.CasosDePrueba)
-                .ToListAsync();
+            var problemas = _context.Problemas.AsQueryable();
+            string dificultadSeleccionada = dificultad;
 
-            return View(problemas);
+            if (!string.IsNullOrEmpty(dificultad))
+            {
+                problemas = problemas.Where(p => p.Dificultad == dificultad);
+            }
+
+            ViewBag.DificultadSeleccionada = dificultadSeleccionada;
+
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    int racha = await CalcularRachaActual(userId);
+                    ViewBag.Racha = racha;
+                }
+            }
+
+            return View(await problemas.ToListAsync());
         }
 
         // 2. Detalles
@@ -86,34 +102,35 @@ namespace juezprueba.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // 5. Eliminar
+        // Acción para eliminar directamente (usado por AJAX)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var problema = await _context.Problemas
-                .Include(p => p.CasosDePrueba)
-                .FirstOrDefaultAsync(p => p.Id == id);
-
+            var problema = await _context.Problemas.FindAsync(id);
             if (problema == null)
+            {
                 return NotFound();
+            }
 
-            return View(problema);
+            _context.Problemas.Remove(problema);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        // Acción para mostrar vista de confirmación de eliminación
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var problema = await _context.Problemas
                 .Include(p => p.CasosDePrueba)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
-            if (problema != null)
+            if (problema == null)
             {
-                _context.Problemas.Remove(problema);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
 
-            return RedirectToAction(nameof(Index));
+            return View(problema);
         }
 
         // 6. Resolver (envío de código)
@@ -141,6 +158,7 @@ namespace juezprueba.Controllers
 
             var resultados = new List<string>();
 
+            bool todosCorrectos = true;
             foreach (var caso in problema.CasosDePrueba)
             {
                 var resultadoJson = await _judge0Service.EnviarCodigoAsync(sourceCode, languageId, caso.Input);
@@ -148,10 +166,74 @@ namespace juezprueba.Controllers
 
                 bool esCorrecto = salida.Trim() == caso.OutputEsperado.Trim();
                 resultados.Add($"Caso {caso.Id}: {(esCorrecto ? "✅ Correcto" : $"❌ Incorrecto (Esperado: '{caso.OutputEsperado}', Obtenido: '{salida}')")}");
+
+                if (!esCorrecto)
+                    todosCorrectos = false;
             }
 
             ViewBag.Resultados = resultados;
+
+            if (todosCorrectos)
+            {
+                // Obtener id del usuario actual
+                var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    var ahora = DateTime.UtcNow;
+                    var inicioMes = new DateTime(ahora.Year, ahora.Month, 1);
+
+                    // Verificar si ya resolvio este problema este mes
+                    bool yaResuelto = await _context.ProblemasResueltos
+                        .AnyAsync(pr => pr.UsuarioId == userId && pr.ProblemaId == id && pr.FechaResolucion >= inicioMes);
+
+                    if (!yaResuelto)
+                    {
+                        var nuevoRegistro = new ProblemaResuelto
+                        {
+                            UsuarioId = userId,
+                            ProblemaId = id,
+                            FechaResolucion = ahora
+                        };
+                        _context.ProblemasResueltos.Add(nuevoRegistro);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+            }
+
             return View(problema);
+        }
+
+        private async Task<int> CalcularRachaActual(string userId)
+        {
+            var hoy = DateTime.UtcNow.Date;
+
+            var fechas = await _context.ProblemasResueltos
+                .Where(p => p.UsuarioId == userId)
+                .Select(p => p.FechaResolucion.Date)
+                .Distinct()
+                .OrderByDescending(f => f)
+                .ToListAsync();
+
+            int racha = 0;
+            for (int i = 0; i < fechas.Count; i++)
+            {
+                if (fechas[i] == hoy.AddDays(-racha))
+                {
+                    racha++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return racha;
+        }
+
+        private bool ProblemaExists(int id)
+        {
+            return _context.Problemas.Any(e => e.Id == id);
         }
     }
 }

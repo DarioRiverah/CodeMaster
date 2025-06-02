@@ -1,5 +1,7 @@
 html {
     font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -8,92 +10,167 @@ html {
     }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus,
+.form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
 }
 
 body {
     margin-bottom: 60px;
-}
-
-/*Aqui la tabla de codigos*/
-.topics-section {
-    padding: 2rem;
     background-color: var(--bs-body-bg);
-    color: var(--bs-body-color);
-    border-radius: 12px;
-    margin-top: 2rem;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+    transition: background-color 0.3s ease;
 }
 
-    .topics-section h2 {
-        text-align: left;
-        margin-bottom: 1rem;
-    }
-
-.topics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
-}
-
-.topic-item {
-    background-color: var(--bs-tertiary-bg);
-    padding: 1rem;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 500;
-    transition: background-color 0.3s;
-}
-
-    .topic-item i {
-        font-size: 1.2rem;
-    }
-
-    .topic-item:hover {
-        background-color: var(--bs-secondary-bg);
-    }
-
-/*Aqui el nav*/
+/* ===== SISTEMA DE COLORES PARA LA BARRA ===== */
 :root {
-    --navbar-bg: #6f42c1;
+    /* Degradado para tema claro */
+    --navbar-gradient-light: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    /* Degradado azul-púrpura oscuro para tema oscuro */
+    --navbar-gradient-dark: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
     --navbar-text: #ffffff;
+    --navbar-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --navbar-hover-bg: rgba(255, 255, 255, 0.1);
+    --navbar-active-bg: rgba(255, 255, 255, 0.2);
 }
 
 [data-bs-theme="dark"] {
-    --navbar-bg: #5a359c;
+    --navbar-bg: var(--navbar-gradient-dark);
+    --navbar-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Navbar con fondo morado */
-.bg-purple {
-    background-color: var(--navbar-bg) !important;
+[data-bs-theme="light"] {
+    --navbar-bg: var(--navbar-gradient-light);
+    --navbar-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Texto blanco para título y enlaces */
-.navbar .navbar-brand,
-.navbar .nav-link {
+/* ===== BARRA DE NAVEGACIÓN CON DEGRADADO AZUL-PÚRPURA ===== */
+.navbar {
+    background: var(--navbar-bg) !important;
+    box-shadow: var(--navbar-shadow);
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+/* Elementos de navegación */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
     color: var(--navbar-text) !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 0;
+    margin-right: 1.5rem;
+    transition: all 0.3s ease;
 }
 
-    /* Hover sutil */
+.navbar .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    margin: 0 0.2rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
     .navbar .nav-link:hover {
-        color: #ddd !important;
+        color: white !important;
+        background-color: var(--navbar-hover-bg);
+        transform: translateY(-2px);
     }
 
-/* Icono hamburguesa en modo oscuro */
+/* Elemento activo */
+.navbar .nav-item.active .nav-link {
+    background-color: var(--navbar-active-bg);
+    color: white !important;
+}
+
+/* Botón hamburguesa */
 .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Menú desplegable */
+.dropdown-menu {
+    background-color: #3a3a5c;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item {
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.2s ease;
+}
+
+    .dropdown-item:hover {
+        background-color: #4e4376;
+        color: white !important;
+    }
+
+.dropdown-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Botones en la barra */
+.navbar .btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+    .navbar .btn-outline-light:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.5);
+        color: white;
+    }
+
+/* Imagen de perfil */
+.navbar img.rounded-circle {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+    .navbar img.rounded-circle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+/* ===== DISEÑO RESPONSIVO ===== */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: var(--navbar-bg);
+        padding: 1rem;
+        margin-top: 0.5rem;
+        border-radius: 8px;
+        box-shadow: var(--navbar-shadow);
+    }
+
+    .navbar .nav-link {
+        margin: 0.3rem 0;
+    }
+
+    .d-flex.align-items-center {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* ===== ESTILOS ADICIONALES ===== */
+.footer {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    transition: all 0.3s ease;
+}
+
+/* Transiciones para cambio de tema */
+.theme-changing,
+.theme-changing .navbar,
+.theme-changing .footer,
+.theme-changing .container,
+.theme-changing .dropdown-menu {
+    transition: background-color 1s ease, color 0.5s ease;
 }

@@ -1,28 +1,180 @@
 ﻿@model juezprueba.ViewModels.ResendEmailConfirmationViewModel
-
-
 @{
     ViewData["Title"] = "Reenviar correo de confirmación";
 }
-
-<h2>@ViewData["Title"]</h2>
-
-<form asp-action="ResendEmailConfirmation" method="post" class="form">
-    <div class="form-group mb-3">
-        <label asp-for="Email" class="form-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Reenviar correo</button>
-</form>
-
-@if (ViewBag.Message != null)
-{
-    <div class="alert alert-success mt-3" role="alert">
-        @ViewBag.Message
-    </div>
+@section ParticleBackground {
+    <script src="~/js/particleBackground.js"></script>
 }
+<style>
+    .container-resend {
+        max-width: 400px;
+        margin: 2rem auto;
+        padding: 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(var(--bs-body-color-rgb), 0.1);
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        position: relative;
+        z-index: 10;
+    }
+
+    .title-resend {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: var(--bs-heading-color);
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+
+    .form-group-resend {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label-resend {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: var(--bs-secondary-color);
+    }
+
+    .form-control-resend {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+        transition: all 0.3s ease;
+    }
+
+        .form-control-resend:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+    .btn-resend {
+        width: 100%;
+        padding: 0.85rem;
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        color: white !important;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+        .btn-resend::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6 10%, #8b5cf6 90%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-resend:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+        }
+
+            .btn-resend:hover::before {
+                opacity: 1;
+            }
+
+        .btn-resend::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient( 90deg, transparent, rgba(255, 255, 255, 0.15), transparent );
+            transition: left 0.6s ease;
+        }
+
+        .btn-resend:hover::after {
+            left: 100%;
+        }
+
+    .alert-resend {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        border-radius: 8px;
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+        border-left: 4px solid #10b981;
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    .text-danger {
+        color: var(--bs-danger);
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    /* Animaciones */
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive */
+    @@media (max-width: 640px) {
+        .container-resend {
+            margin: 1.5rem;
+            padding: 1.5rem;
+        }
+
+        .title-resend {
+            font-size: 1.3rem;
+        }
+    }
+</style>
+
+@section ParticleBackground {
+    <script src="~/js/particleBackground.js"></script>
+}
+
+<div class="container-resend">
+    <h2 class="title-resend">@ViewData["Title"]</h2>
+
+    <form asp-action="ResendEmailConfirmation" method="post">
+        <div class="form-group-resend">
+            <label asp-for="Email" class="form-label-resend">Correo electrónico</label>
+            <input asp-for="Email" class="form-control-resend" type="email" placeholder="tu@email.com" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn-resend">
+            Reenviar correo
+        </button>
+    </form>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert-resend" role="alert">
+            @ViewBag.Message
+        </div>
+    }
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

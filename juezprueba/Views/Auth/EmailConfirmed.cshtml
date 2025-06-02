@@ -2,11 +2,184 @@
     ViewData["Title"] = "Correo Confirmado";
 }
 
-<div class="container mt-5">
-    <div class="alert alert-success text-center">
-        <h4 class="alert-heading">¡Correo electrónico confirmado!</h4>
-        <p>Tu dirección de correo ha sido verificada exitosamente. Ahora puedes iniciar sesión en tu cuenta.</p>
-        <hr>
-        <a class="btn btn-primary" asp-action="Login" asp-controller="Auth">Iniciar Sesión</a>
+<style>
+    .container-confirmed {
+        max-width: 500px;
+        margin: 3rem auto;
+        padding: 3rem 2rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(var(--bs-body-color-rgb), 0.1);
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        text-align: center;
+        position: relative;
+        z-index: 10;
+    }
+
+    .success-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        background: rgba(16, 185, 129, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            color: #10b981;
+        }
+
+    .title-confirmed {
+        color: var(--bs-heading-color);
+        font-weight: 700;
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .message-confirmed {
+        color: var(--bs-secondary-color);
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+
+    .divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--bs-border-color), transparent);
+        margin: 1.5rem 0;
+    }
+
+    .btn-login {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.875rem 2rem;
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        color: white !important;
+        text-decoration: none;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+        .btn-login::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6 10%, #8b5cf6 90%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+            .btn-login:hover::before {
+                opacity: 1;
+            }
+
+        .btn-login::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient( 90deg, transparent, rgba(255, 255, 255, 0.15), transparent );
+            transition: left 0.6s ease;
+        }
+
+        .btn-login:hover::after {
+            left: 100%;
+        }
+
+        .btn-login svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-login:hover svg {
+            transform: translateX(3px);
+        }
+
+    /* Animaciones */
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive */
+    @@media (max-width: 640px) {
+        .container-confirmed {
+            margin: 2rem 1rem;
+            padding: 2rem 1.5rem;
+        }
+
+        .title-confirmed {
+            font-size: 1.5rem;
+        }
+
+        .message-confirmed {
+            font-size: 1rem;
+        }
+
+        .btn-login {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+    }
+</style>
+
+@section ParticleBackground {
+    <script src="~/js/particleBackground.js"></script>
+}
+
+<div class="container-confirmed">
+    <div class="success-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+        </svg>
     </div>
+
+    <h4 class="title-confirmed">¡Correo electrónico confirmado!</h4>
+
+    <p class="message-confirmed">
+        Tu dirección de correo ha sido verificada exitosamente.
+        Ahora puedes iniciar sesión en tu cuenta.
+    </p>
+
+    <div class="divider"></div>
+
+    <a class="btn-login" asp-action="Login" asp-controller="Auth">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+        </svg>
+        Iniciar Sesión
+    </a>
 </div>

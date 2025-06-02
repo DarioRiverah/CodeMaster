@@ -1,10 +1,34 @@
 ﻿using juezprueba.Context;
 using juezprueba.Models;
 using juezprueba.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+})
+.AddCookie()
+.AddGoogle(options =>
+{
+    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+
+    options.Events.OnRemoteFailure = context =>
+    {
+        context.Response.Redirect("/Auth/ExternalLoginCallback?remoteError=" + Uri.EscapeDataString(context.Failure.Message));
+        context.HandleResponse(); // Evita que se lance una excepción
+        return Task.CompletedTask;
+    };
+});
+
+// Enviar emails:
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 // 1. Configurar Identity con soporte de roles
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -15,7 +39,14 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
-// 3. Claims personalizados (para mostrar Nombre + Apellido)
+// Configuración de servicios
+builder.Services.AddHttpClient("ImgBB", client => {
+    client.Timeout = TimeSpan.FromSeconds(15);
+    client.BaseAddress = new Uri("https://api.imgbb.com/");
+});
+
+builder.Services.AddMemoryCache();
+
 builder.Services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationClaimsPrincipalFactory>();
 
 // 4. Agregar servicios MVC y HttpClient
